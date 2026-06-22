@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="inema-course" content="claude-code">
+  <title>5.1 Python + Claude Code | Claude Code</title>
+  <script>
+  (function () {
+    try {
+      var html = document.documentElement;
+      var DEF = { theme: 'inema-dark', font: 'inter', fontScale: 100, lineWidth: 68, leading: 1.7, accent: 'teal' };
+      function clone(o){var r={};for(var x in o)r[x]=o[x];return r;}
+      var p = clone(DEF);
+      try {
+        var raw = localStorage.getItem('inema.prefs');
+        if (raw) { var parsed = JSON.parse(raw); if (parsed && typeof parsed==='object'){ for (var k in DEF) if (parsed[k]!=null) p[k]=parsed[k]; } }
+        else { var legacy = localStorage.getItem('theme'); if (legacy==='light') p.theme='claro'; else if (legacy==='dark') p.theme='inema-dark'; }
+      } catch (e) { p = clone(DEF); }
+      var THEMES = { 'inema-dark':{dark:true,attr:null,cs:'dark'},'claro':{dark:false,attr:null,cs:'light'},'sepia':{dark:false,attr:'sepia',cs:'light'},'foco':{dark:null,attr:'foco',cs:null},'contraste':{dark:true,attr:'contraste',cs:'dark'} };
+      var t = THEMES[p.theme] || THEMES['inema-dark'];
+      if (t.dark===true) html.classList.add('dark'); else if (t.dark===false) html.classList.remove('dark');
+      if (t.attr) html.setAttribute('data-theme', t.attr); else html.removeAttribute('data-theme');
+      html.style.colorScheme = (t.cs ? t.cs : (html.classList.contains('dark')?'dark':'light'));
+      html.setAttribute('data-font', p.font||'inter'); html.setAttribute('data-accent', p.accent||'teal');
+      var s = html.style, scale=(+p.fontScale||100);
+      s.setProperty('--inema-font-scale',(scale/100).toString()); s.setProperty('font-size',scale+'%');
+      s.setProperty('--measure',(+p.lineWidth||68)+'ch'); s.setProperty('--lh-body',(+p.leading||1.7).toString());
+    } catch (err) { try { document.documentElement.classList.add('dark'); document.documentElement.style.colorScheme='dark'; } catch(e){} }
+  })();
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class', theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } } }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/learn.css">
+  <script type="application/json" data-inema-manifest>
+{"course":"claude-code","tracks":[{"n":"1","title":"CLI e Configuração","modules":[{"id":"1-1","title":"Instalação e Primeiro Comando","topics":6,"href":"curso/trilha1/modulo-1-1.html"},{"id":"1-2","title":"Navegando o CLI como um Pro","topics":6,"href":"curso/trilha1/modulo-1-2.html"},{"id":"1-3","title":"CLAUDE.md — O Cérebro do Projeto","topics":6,"href":"curso/trilha1/modulo-1-3.html"},{"id":"1-4","title":"Configuração Avançada","topics":6,"href":"curso/trilha1/modulo-1-4.html"},{"id":"1-5","title":"Memory e Contexto Persistente","topics":6,"href":"curso/trilha1/modulo-1-5.html"},{"id":"1-6","title":"Seu Workflow Pessoal","topics":6,"href":"curso/trilha1/modulo-1-6.html"}]},{"n":"2","title":"Plan e Loop Modes","modules":[{"id":"2-1","title":"Plan Mode — Pense Antes de Codar","topics":6,"href":"curso/trilha2/modulo-2-1.html"},{"id":"2-2","title":"Planos que Funcionam","topics":6,"href":"curso/trilha2/modulo-2-2.html"},{"id":"2-3","title":"Loop Mode — Automação Iterativa","topics":6,"href":"curso/trilha2/modulo-2-3.html"},{"id":"2-4","title":"Patterns de Loop na Prática","topics":6,"href":"curso/trilha2/modulo-2-4.html"},{"id":"2-5","title":"Combinando Plan + Loop","topics":6,"href":"curso/trilha2/modulo-2-5.html"},{"id":"2-6","title":"Agentic Coding — O Novo Normal","topics":6,"href":"curso/trilha2/modulo-2-6.html"}]},{"n":"3","title":"MCP Servers","modules":[{"id":"3-1","title":"O que são MCP Servers","topics":6,"href":"curso/trilha3/modulo-3-1.html"},{"id":"3-2","title":"Seus Primeiros MCPs","topics":6,"href":"curso/trilha3/modulo-3-2.html"},{"id":"3-3","title":"MCPs de Produtividade","topics":6,"href":"curso/trilha3/modulo-3-3.html"},{"id":"3-4","title":"MCPs de Database e APIs","topics":6,"href":"curso/trilha3/modulo-3-4.html"},{"id":"3-5","title":"Criando seu Próprio MCP Server","topics":6,"href":"curso/trilha3/modulo-3-5.html"},{"id":"3-6","title":"Ecossistema e Marketplace","topics":6,"href":"curso/trilha3/modulo-3-6.html"}]},{"n":"4","title":"Subagentes e Git","modules":[{"id":"4-1","title":"Subagentes — Conceitos","topics":6,"href":"curso/trilha4/modulo-4-1.html"},{"id":"4-2","title":"Paralelismo Real","topics":6,"href":"curso/trilha4/modulo-4-2.html"},{"id":"4-3","title":"Patterns de Multi-Agent","topics":6,"href":"curso/trilha4/modulo-4-3.html"},{"id":"4-4","title":"Git com IA — Versionamento","topics":6,"href":"curso/trilha4/modulo-4-4.html"},{"id":"4-5","title":"Pull Requests e Code Review","topics":6,"href":"curso/trilha4/modulo-4-5.html"},{"id":"4-6","title":"CI/CD e GitHub Actions","topics":6,"href":"curso/trilha4/modulo-4-6.html"}]},{"n":"5","title":"Python e Ship","modules":[{"id":"5-1","title":"Python + Claude Code","topics":6,"href":"curso/trilha5/modulo-5-1.html"},{"id":"5-2","title":"Automação de Scripts","topics":6,"href":"curso/trilha5/modulo-5-2.html"},{"id":"5-3","title":"FastAPI e Web Services","topics":6,"href":"curso/trilha5/modulo-5-3.html"},{"id":"5-4","title":"Testing Automatizado","topics":6,"href":"curso/trilha5/modulo-5-4.html"},{"id":"5-5","title":"Deploy e Infraestrutura","topics":6,"href":"curso/trilha5/modulo-5-5.html"},{"id":"5-6","title":"Ship Your Product","topics":6,"href":"curso/trilha5/modulo-5-6.html"}]}]}
+</script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    [id^="topico-"], [id^="modulo-"] { scroll-margin-top: 5rem; }
+    .termo { border-bottom: 1px dashed #2dd4bf; cursor: help; font-weight: 600; color: #5eead4; }
+    html:not(.dark) .termo { color: #0d9488; border-color: #14b8a6; }
+    .copybox pre { white-space: pre-wrap; word-break: break-word; }
+
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+    html:not(.dark) .text-teal-400 { color: #0d9488; }
+    html:not(.dark) .bg-teal-500\/20 { background-color: rgba(13,148,136,0.12); }
+    html:not(.dark) .bg-teal-500\/10 { background-color: rgba(13,148,136,0.08); }
+    html:not(.dark) .bg-teal-900\/20 { background-color: rgba(13,148,136,0.08); }
+    html:not(.dark) .bg-teal-900\/30 { background-color: rgba(13,148,136,0.08); }
+    html:not(.dark) .border-teal-500\/30 { border-color: rgba(13,148,136,0.25); }
+    html:not(.dark) .hover\:bg-teal-500\/30:hover { background-color: rgba(13,148,136,0.18); }
+    html:not(.dark) .hover\:text-teal-400:hover { color: #0d9488; }
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161,98,7,0.08); }
+    html:not(.dark) .border-primary\/30 { border-color: rgba(161,98,7,0.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .bg-blue-900\/20 { background-color: rgba(37,99,235,0.08); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(37,99,235,0.25); }
+    html:not(.dark) .bg-red-900\/20 { background-color: rgba(185,28,28,0.07); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(185,28,28,0.25); }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255,255,255,0.95); }
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+    html:not(.dark) svg[role="img"] { filter: saturate(0.82) brightness(0.96); }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+  <a href="#conteudo" class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:top-2 focus:left-2 focus:px-4 focus:py-2 focus:bg-dark-800 focus:text-teal-400 focus:rounded-lg">Pular para o conteudo</a>
+
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300"><span class="text-2xl">🤖</span><span class="font-bold text-lg hidden sm:inline">CLAUDE CODE</span></a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">CLI</span></a>
+          <a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Modos</span></a>
+          <a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors"><span class="sm:hidden">T3</span><span class="hidden sm:inline">MCP</span></a>
+          <a href="../trilha4/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors"><span class="sm:hidden">T4</span><span class="hidden sm:inline">Agentes</span></a>
+          <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-teal-400 bg-teal-500/10"><span class="sm:hidden">T5</span><span class="hidden sm:inline">Python</span></a>
+          <button type="button" data-inema-journey-open class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm text-neutral-300 hover:text-neutral-100 hover:bg-dark-700 transition-colors ml-1"><span aria-hidden="true">&#9719;</span><span>Minha jornada</span><span class="inema-journey-badge hidden" aria-hidden="true"></span></button>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-1" aria-label="Alternar tema">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4" aria-label="Trilha de navegacao">
+    <div class="flex items-center space-x-2 text-sm text-neutral-400">
+      <a href="../../index.html" class="hover:text-teal-400">Inicio</a><span>/</span>
+      <a href="index.html" class="hover:text-teal-400">Trilha 5</a><span>/</span>
+      <span class="text-teal-400">Modulo 5.1</span>
+    </div>
+  </nav>
+
+  <header class="bg-gradient-to-br from-teal-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="inline-block px-3 py-1 bg-teal-500/20 text-teal-400 text-xs font-semibold rounded-full mb-4">MODULO 5.1</span>
+      <h1 class="text-3xl sm:text-4xl font-bold mb-4">🐍 Python + Claude Code</h1>
+      <p class="text-lg text-neutral-400 max-w-3xl">Setup Python com pyenv, virtual environments, gerenciamento de dependencias e seus primeiros scripts assistidos por IA. O alicerce para tudo que vem depois nesta trilha.</p>
+      <div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-teal-400">6</div><div class="text-xs text-neutral-400">Topicos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-teal-400">~40</div><div class="text-xs text-neutral-400">Minutos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-teal-400">T1-T4</div><div class="text-xs text-neutral-400">Pre-requisito</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-teal-400">Pratico</div><div class="text-xs text-neutral-400">Tipo</div></div>
+      </div>
+      <div class="mt-6 max-w-2xl">
+        <div data-inema-meter="modulo:5-1" class="inema-meter flex items-center gap-3" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-label="Progresso do modulo 5.1">
+          <span class="text-sm text-neutral-400">Progresso:</span>
+          <span class="inema-meter-pct text-teal-400 font-bold text-sm">0%</span>
+          <span class="inema-meter-count text-xs text-neutral-500">0 de 6</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <div class="lg:grid lg:grid-cols-[230px_1fr] lg:gap-10">
+      <nav data-inema-toc aria-label="Indice da pagina" class="hidden lg:block sticky top-24 self-start">
+        <p class="text-sm text-neutral-400 mb-3">Secao <span class="inema-toc-pos">1</span> de <span class="inema-toc-total">6</span></p>
+        <ul class="space-y-1 text-sm">
+          <li><a href="#topico-1" class="inema-toc-link block px-3 py-1.5 rounded-lg text-neutral-400 hover:text-teal-400 hover:bg-teal-500/10">1. Setup Python</a></li>
+          <li><a href="#topico-2" class="inema-toc-link block px-3 py-1.5 rounded-lg text-neutral-400 hover:text-teal-400 hover:bg-teal-500/10">2. Virtual environments</a></li>
+          <li><a href="#topico-3" class="inema-toc-link block px-3 py-1.5 rounded-lg text-neutral-400 hover:text-teal-400 hover:bg-teal-500/10">3. pip/uv dependencias</a></li>
+          <li><a href="#topico-4" class="inema-toc-link block px-3 py-1.5 rounded-lg text-neutral-400 hover:text-teal-400 hover:bg-teal-500/10">4. Scripts basicos</a></li>
+          <li><a href="#topico-5" class="inema-toc-link block px-3 py-1.5 rounded-lg text-neutral-400 hover:text-teal-400 hover:bg-teal-500/10">5. Debugging com Claude</a></li>
+          <li><a href="#topico-6" class="inema-toc-link block px-3 py-1.5 rounded-lg text-neutral-400 hover:text-teal-400 hover:bg-teal-500/10">6. Type hints + IA</a></li>
+        </ul>
+      </nav>
+
+      <main id="conteudo" class="inema-prose min-w-0">
+
+        <!-- TOPICO 1 -->
+        <section id="topico-1" data-inema-topic="modulo-5-1#topico-1" class="mb-16">
+          <div class="flex items-center justify-between gap-4 mb-6">
+            <div class="flex items-center space-x-4"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-teal-500/20 text-teal-400 font-bold text-xl flex-shrink-0">1</span><h2 class="text-2xl font-bold">🔧 Setup Python (pyenv/python3)</h2></div>
+            <button type="button" data-inema-doubt-toggle aria-pressed="false" title="Marcar duvida neste topico" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-dark-700 border border-dark-600 text-neutral-300 hover:bg-dark-600 transition-colors text-sm flex-shrink-0"><span aria-hidden="true">?</span><span class="hidden sm:inline">Tenho duvida</span></button>
+          </div>
+
+          <p data-inema-block="m5-1-t1-p1" class="text-neutral-300 mb-4 leading-relaxed">Antes de pedir qualquer coisa ao Claude Code em Python, voce precisa de um Python funcional. A forma mais confiavel e usar <strong class="text-teal-400">pyenv</strong> para gerenciar versoes ou o <code>python3</code> nativo do sistema. O pyenv permite ter multiplas versoes lado a lado e trocar entre elas por projeto.</p>
+
+          <p data-inema-block="m5-1-t1-p2" class="text-neutral-300 mb-6 leading-relaxed">Claude Code consegue detectar qual versao de Python esta ativa e adaptar o codigo gerado. Mas se voce nao tem um setup limpo, ele vai gerar codigo para uma versao que talvez nao exista na sua maquina. Comece certo.</p>
+
+          <div class="copybox bg-dark-900 border border-teal-500/30 rounded-xl overflow-hidden mb-6">
+            <div class="flex items-center justify-between px-4 py-2 bg-dark-800 border-b border-dark-600">
+              <span class="text-xs text-teal-400 font-mono">terminal</span>
+              <button type="button" onclick="copyBox(this)" class="text-xs px-2 py-1 rounded bg-teal-500/20 text-teal-400 hover:bg-teal-500/30 transition-colors">copiar</button>
+            </div>
+            <pre class="p-4 text-sm text-neutral-200 font-mono leading-relaxed"># Instalar pyenv (macOS/Linux)
+curl https://pyenv.run | bash
+
+# Instalar Python 3.12
+pyenv install 3.12
+
+# Definir como versao do projeto
+cd meu-projeto
+pyenv local 3.12
+
+# Verificar
+python --version   # Python 3.12.x</pre>
+          </div>
+
+          <div class="bg-dark-800/60 border-l-4 border-teal-500 rounded-r-lg p-4 mb-6">
+            <p class="text-sm text-neutral-300"><strong class="text-teal-400">Em 1 frase:</strong> pyenv te da a versao certa de Python por projeto, sem conflitos.</p>
+          </div>
+
+          <div class="flex justify-start mt-6">
+            <button type="button" data-inema-read-toggle aria-pressed="false" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-teal-500/20 border border-teal-500/30 text-teal-400 hover:bg-teal-500/30 transition-colors"><span class="inema-read-icon" aria-hidden="true">○</span><span class="inema-read-label">Marcar como lido</span></button>
+          </div>
+        </section>
+
+        <!-- TOPICO 2 -->
+        <section id="topico-2" data-inema-topic="modulo-5-1#topico-2" class="mb-16">
+          <div class="flex items-center justify-between gap-4 mb-6">
+            <div class="flex items-center space-x-4"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-teal-500/20 text-teal-400 font-bold text-xl flex-shrink-0">2</span><h2 class="text-2xl font-bold">📦 Virtual environments (venv/uv)</h2></div>
+            <button type="button" data-inema-doubt-toggle aria-pressed="false" title="Marcar duvida neste topico" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-dark-700 border border-dark-600 text-neutral-300 hover:bg-dark-600 transition-colors text-sm flex-shrink-0"><span aria-hidden="true">?</span><span class="hidden sm:inline">Tenho duvida</span></button>
+          </div>
+
+          <p data-inema-block="m5-1-t2-p1" class="text-neutral-300 mb-4 leading-relaxed">Um <span class="termo" title="Ambiente isolado com suas proprias dependencias Python.">virtual environment</span> e uma copia isolada do Python para cada projeto. Sem ele, pacotes de projetos diferentes colidem. O <code>venv</code> vem com Python; o <strong class="text-teal-400">uv</strong> e uma alternativa moderna e muito mais rapida.</p>
+
+          <div class="copybox bg-dark-900 border border-teal-500/30 rounded-xl overflow-hidden mb-6">
+            <div class="flex items-center justify-between px-4 py-2 bg-dark-800 border-b border-dark-600">
+              <span class="text-xs text-teal-400 font-mono">terminal</span>
+              <button type="button" onclick="copyBox(this)" class="text-xs px-2 py-1 rounded bg-teal-500/20 text-teal-400 hover:bg-teal-500/30 transition-colors">copiar</button>
+            </div>
+            <pre class="p-4 text-sm text-neutral-200 font-mono leading-relaxed"># Opcao 1: venv padrao
+python3 -m venv .venv
+source .venv/bin/activate
+
+# Opcao 2: uv (rapido)
+pip install uv
+uv venv .venv
+source .venv/bin/activate
+
+# Verificar que esta no venv
+which python  # deve apontar para .venv/bin/python</pre>
+          </div>
+
+          <div class="bg-red-900/20 border border-red-500/30 rounded-xl p-5 mb-6">
+            <h3 class="font-semibold text-red-400 mb-2">Erro comum</h3>
+            <p class="text-neutral-300 text-sm">Esquecer de ativar o venv antes de rodar pip install. O pacote vai para o Python global e nao fica no projeto.</p>
+          </div>
+
+          <div class="bg-dark-800/60 border-l-4 border-teal-500 rounded-r-lg p-4 mb-6">
+            <p class="text-sm text-neutral-300"><strong class="text-teal-400">Em 1 frase:</strong> sempre crie um .venv por projeto; sempre ative antes de instalar pacotes.</p>
+          </div>
+
+          <div class="flex justify-start mt-6">
+            <button type="button" data-inema-read-toggle aria-pressed="false" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-teal-500/20 border border-teal-500/30 text-teal-400 hover:bg-teal-500/30 transition-colors"><span class="inema-read-icon" aria-hidden="true">○</span><span class="inema-read-label">Marcar como lido</span></button>
+          </div>
+        </section>
+
+        <!-- TOPICO 3 -->
+        <section id="topico-3" data-inema-topic="modulo-5-1#topico-3" class="mb-16">
+          <div class="flex items-center justify-between gap-4 mb-6">
+            <div class="flex items-center space-x-4"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-teal-500/20 text-teal-400 font-bold text-xl flex-shrink-0">3</span><h2 class="text-2xl font-bold">📥 pip/uv para dependencias</h2></div>
+            <button type="button" data-inema-doubt-toggle aria-pressed="false" title="Marcar duvida neste topico" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-dark-700 border border-dark-600 text-neutral-300 hover:bg-dark-600 transition-colors text-sm flex-shrink-0"><span aria-hidden="true">?</span><span class="hidden sm:inline">Tenho duvida</span></button>
+          </div>
+
+          <p data-inema-block="m5-1-t3-p1" class="text-neutral-300 mb-4 leading-relaxed">Quando Claude Code gera codigo que usa <code>requests</code>, <code>fastapi</code> ou qualquer outro pacote, voce precisa instala-lo. O <code>pip</code> e o gerenciador padrao; <code>uv pip</code> faz a mesma coisa 10-100x mais rapido. O arquivo <code>requirements.txt</code> registra exatamente o que foi instalado.</p>
+
+          <div class="copybox bg-dark-900 border border-teal-500/30 rounded-xl overflow-hidden mb-6">
+            <div class="flex items-center justify-between px-4 py-2 bg-dark-800 border-b border-dark-600">
+              <span class="text-xs text-teal-400 font-mono">terminal</span>
+              <button type="button" onclick="copyBox(this)" class="text-xs px-2 py-1 rounded bg-teal-500/20 text-teal-400 hover:bg-teal-500/30 transition-colors">copiar</button>
+            </div>
+            <pre class="p-4 text-sm text-neutral-200 font-mono leading-relaxed"># Instalar um pacote
+pip install requests
+
+# Travar dependencias
+pip freeze > requirements.txt
+
+# Instalar de um requirements.txt
+pip install -r requirements.txt
+
+# Alternativa rapida com uv
+uv pip install -r requirements.txt</pre>
+          </div>
+
+          <div class="bg-dark-800/60 border-l-4 border-teal-500 rounded-r-lg p-4 mb-6">
+            <p class="text-sm text-neutral-300"><strong class="text-teal-400">Em 1 frase:</strong> pip install + pip freeze = dependencias travadas e reproduziveis.</p>
+          </div>
+
+          <div class="flex justify-start mt-6">
+            <button type="button" data-inema-read-toggle aria-pressed="false" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-teal-500/20 border border-teal-500/30 text-teal-400 hover:bg-teal-500/30 transition-colors"><span class="inema-read-icon" aria-hidden="true">○</span><span class="inema-read-label">Marcar como lido</span></button>
+          </div>
+        </section>
+
+        <!-- TOPICO 4 -->
+        <section id="topico-4" data-inema-topic="modulo-5-1#topico-4" class="mb-16">
+          <div class="flex items-center justify-between gap-4 mb-6">
+            <div class="flex items-center space-x-4"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-teal-500/20 text-teal-400 font-bold text-xl flex-shrink-0">4</span><h2 class="text-2xl font-bold">📝 Scripts de automacao basicos</h2></div>
+            <button type="button" data-inema-doubt-toggle aria-pressed="false" title="Marcar duvida neste topico" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-dark-700 border border-dark-600 text-neutral-300 hover:bg-dark-600 transition-colors text-sm flex-shrink-0"><span aria-hidden="true">?</span><span class="hidden sm:inline">Tenho duvida</span></button>
+          </div>
+
+          <p data-inema-block="m5-1-t4-p1" class="text-neutral-300 mb-4 leading-relaxed">O fluxo classico com Claude Code: voce descreve o que quer automatizar, ele gera o script, voce roda e ajusta. Comece com scripts pequenos que fazem UMA coisa bem. Use <code>argparse</code> para argumentos, <code>pathlib</code> para caminhos e <code>if __name__ == "__main__"</code> como ponto de entrada.</p>
+
+          <div class="copybox bg-dark-900 border border-teal-500/30 rounded-xl overflow-hidden mb-6">
+            <div class="flex items-center justify-between px-4 py-2 bg-dark-800 border-b border-dark-600">
+              <span class="text-xs text-teal-400 font-mono">organize_files.py</span>
+              <button type="button" onclick="copyBox(this)" class="text-xs px-2 py-1 rounded bg-teal-500/20 text-teal-400 hover:bg-teal-500/30 transition-colors">copiar</button>
+            </div>
+            <pre class="p-4 text-sm text-neutral-200 font-mono leading-relaxed">#!/usr/bin/env python3
+"""Organiza arquivos por extensao em subpastas."""
+import argparse
+from pathlib import Path
+
+def organize(directory: Path) -> None:
+    for f in directory.iterdir():
+        if f.is_file() and not f.name.startswith('.'):
+            ext_dir = directory / f.suffix.lstrip('.')
+            ext_dir.mkdir(exist_ok=True)
+            f.rename(ext_dir / f.name)
+            print(f"  {f.name} -> {ext_dir.name}/")
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("dir", type=Path)
+    args = parser.parse_args()
+    organize(args.dir)</pre>
+          </div>
+
+          <div class="bg-dark-800/60 border-l-4 border-teal-500 rounded-r-lg p-4 mb-6">
+            <p class="text-sm text-neutral-300"><strong class="text-teal-400">Em 1 frase:</strong> scripts pequenos + argparse + pathlib = automacao limpa que Claude Code gera em segundos.</p>
+          </div>
+
+          <div class="flex justify-start mt-6">
+            <button type="button" data-inema-read-toggle aria-pressed="false" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-teal-500/20 border border-teal-500/30 text-teal-400 hover:bg-teal-500/30 transition-colors"><span class="inema-read-icon" aria-hidden="true">○</span><span class="inema-read-label">Marcar como lido</span></button>
+          </div>
+        </section>
+
+        <!-- TOPICO 5 -->
+        <section id="topico-5" data-inema-topic="modulo-5-1#topico-5" class="mb-16">
+          <div class="flex items-center justify-between gap-4 mb-6">
+            <div class="flex items-center space-x-4"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-teal-500/20 text-teal-400 font-bold text-xl flex-shrink-0">5</span><h2 class="text-2xl font-bold">🐛 Debugging com Claude</h2></div>
+            <button type="button" data-inema-doubt-toggle aria-pressed="false" title="Marcar duvida neste topico" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-dark-700 border border-dark-600 text-neutral-300 hover:bg-dark-600 transition-colors text-sm flex-shrink-0"><span aria-hidden="true">?</span><span class="hidden sm:inline">Tenho duvida</span></button>
+          </div>
+
+          <p data-inema-block="m5-1-t5-p1" class="text-neutral-300 mb-4 leading-relaxed">Quando um script falha, cole o traceback inteiro no Claude Code. Ele identifica o erro, sugere o fix e pode aplicar direto. Para bugs mais sutis, use <code>pdb</code> (o debugger nativo) ou <code>breakpoint()</code> para pausar a execucao e inspecionar variaveis.</p>
+
+          <div class="bg-blue-900/20 border border-blue-500/30 rounded-xl p-6 mb-6">
+            <h3 class="font-semibold text-blue-400 mb-3">Workflow de debug com Claude Code</h3>
+            <div class="space-y-2 text-sm text-neutral-300">
+              <p>1. Roda o script e pega o erro</p>
+              <p>2. Cola o traceback completo no Claude Code</p>
+              <p>3. Claude identifica a causa e aplica o fix</p>
+              <p>4. Roda de novo para confirmar</p>
+            </div>
+          </div>
+
+          <div class="bg-dark-800/60 border-l-4 border-teal-500 rounded-r-lg p-4 mb-6">
+            <p class="text-sm text-neutral-300"><strong class="text-teal-400">Em 1 frase:</strong> traceback + Claude Code = debug em segundos, nao em horas.</p>
+          </div>
+
+          <div class="flex justify-start mt-6">
+            <button type="button" data-inema-read-toggle aria-pressed="false" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-teal-500/20 border border-teal-500/30 text-teal-400 hover:bg-teal-500/30 transition-colors"><span class="inema-read-icon" aria-hidden="true">○</span><span class="inema-read-label">Marcar como lido</span></button>
+          </div>
+        </section>
+
+        <!-- TOPICO 6 -->
+        <section id="topico-6" data-inema-topic="modulo-5-1#topico-6" class="mb-16">
+          <div class="flex items-center justify-between gap-4 mb-6">
+            <div class="flex items-center space-x-4"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-teal-500/20 text-teal-400 font-bold text-xl flex-shrink-0">6</span><h2 class="text-2xl font-bold">🏷️ Type hints assistidos por IA</h2></div>
+            <button type="button" data-inema-doubt-toggle aria-pressed="false" title="Marcar duvida neste topico" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-dark-700 border border-dark-600 text-neutral-300 hover:bg-dark-600 transition-colors text-sm flex-shrink-0"><span aria-hidden="true">?</span><span class="hidden sm:inline">Tenho duvida</span></button>
+          </div>
+
+          <p data-inema-block="m5-1-t6-p1" class="text-neutral-300 mb-4 leading-relaxed">Python e dinamico, mas <span class="termo" title="Anotacoes de tipo que indicam qual tipo de dado uma variavel/funcao espera e retorna.">type hints</span> tornam o codigo mais seguro e mais facil para a IA entender. Peca ao Claude Code para adicionar type hints ao seu codigo existente: <code>"adicione type hints a todas as funcoes deste modulo"</code>. Use <code>mypy</code> para verificar.</p>
+
+          <div class="copybox bg-dark-900 border border-teal-500/30 rounded-xl overflow-hidden mb-6">
+            <div class="flex items-center justify-between px-4 py-2 bg-dark-800 border-b border-dark-600">
+              <span class="text-xs text-teal-400 font-mono">exemplo com type hints</span>
+              <button type="button" onclick="copyBox(this)" class="text-xs px-2 py-1 rounded bg-teal-500/20 text-teal-400 hover:bg-teal-500/30 transition-colors">copiar</button>
+            </div>
+            <pre class="p-4 text-sm text-neutral-200 font-mono leading-relaxed">from pathlib import Path
+
+def count_lines(filepath: Path) -> int:
+    """Conta linhas de um arquivo."""
+    return len(filepath.read_text().splitlines())
+
+def process_files(directory: Path, ext: str = ".py") -> dict[str, int]:
+    """Retorna {arquivo: n_linhas} para cada arquivo com a extensao."""
+    return {
+        f.name: count_lines(f)
+        for f in directory.glob(f"*{ext}")
+    }</pre>
+          </div>
+
+          <div class="bg-dark-800/60 border-l-4 border-teal-500 rounded-r-lg p-4 mb-6">
+            <p class="text-sm text-neutral-300"><strong class="text-teal-400">Em 1 frase:</strong> type hints = codigo mais claro para voce, para a IA e para o mypy.</p>
+          </div>
+
+          <div class="flex justify-start mt-6">
+            <button type="button" data-inema-read-toggle aria-pressed="false" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-teal-500/20 border border-teal-500/30 text-teal-400 hover:bg-teal-500/30 transition-colors"><span class="inema-read-icon" aria-hidden="true">○</span><span class="inema-read-label">Marcar como lido</span></button>
+          </div>
+        </section>
+
+        <!-- RESUMO -->
+        <section class="mb-12">
+          <div class="bg-gradient-to-br from-teal-900/40 via-dark-800 to-dark-800 rounded-xl border border-teal-500/30 p-8">
+            <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">🧾</span> Resumo do Modulo</h2>
+            <div class="space-y-4 mb-8">
+              <div class="flex items-start space-x-3"><span class="text-teal-400 mt-1">✓</span><div><strong class="text-white">pyenv + python3</strong><span class="text-neutral-400"> para ter a versao certa sempre.</span></div></div>
+              <div class="flex items-start space-x-3"><span class="text-teal-400 mt-1">✓</span><div><strong class="text-white">venv/uv</strong><span class="text-neutral-400"> isola dependencias por projeto.</span></div></div>
+              <div class="flex items-start space-x-3"><span class="text-teal-400 mt-1">✓</span><div><strong class="text-white">pip freeze + requirements.txt</strong><span class="text-neutral-400"> trava o que foi instalado.</span></div></div>
+              <div class="flex items-start space-x-3"><span class="text-teal-400 mt-1">✓</span><div><strong class="text-white">Scripts + argparse + pathlib</strong><span class="text-neutral-400"> e o padrao para automacao.</span></div></div>
+              <div class="flex items-start space-x-3"><span class="text-teal-400 mt-1">✓</span><div><strong class="text-white">Debug com traceback</strong><span class="text-neutral-400"> e o superpoder de Claude Code.</span></div></div>
+              <div class="flex items-start space-x-3"><span class="text-teal-400 mt-1">✓</span><div><strong class="text-white">Type hints</strong><span class="text-neutral-400"> tornam o codigo mais seguro e legivel.</span></div></div>
+            </div>
+            <div class="bg-dark-800/50 rounded-lg p-4 mb-8"><h3 class="font-semibold text-teal-400 mb-2">Proximo modulo:</h3><p class="text-neutral-300">5.2 — Automacao de Scripts: scraping, file processing e scheduling.</p></div>
+            <div class="flex flex-col sm:flex-row gap-4"><a href="index.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Voltar para Trilha</a><a href="modulo-5-2.html" class="flex-1 text-center px-6 py-3 bg-teal-600 text-white rounded-lg font-semibold hover:bg-teal-500 transition-colors">Proximo Modulo →</a></div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <footer class="border-t border-dark-600 py-8 mt-16"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm"><p>Transicao para o Claude Code · <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300">INEMA.CLUB</a></p></div></footer>
+
+  <script>
+    function toggleTopic(button){ const ti=button.closest('.topic-item'); if(!ti)return; const e=ti.querySelector('.topic-explanation'); if(e){e.classList.toggle('active'); button.setAttribute('aria-expanded', e.classList.contains('active'));} }
+    (function(){ const tt=document.getElementById('theme-toggle'),di=document.getElementById('theme-toggle-dark-icon'),li=document.getElementById('theme-toggle-light-icon'),h=document.documentElement; function s(){ if(h.classList.contains('dark')){li.classList.remove('hidden');di.classList.add('hidden');}else{di.classList.remove('hidden');li.classList.add('hidden');} } s(); tt&&tt.addEventListener('click',function(){h.classList.toggle('dark');var d=h.classList.contains('dark');h.style.colorScheme=d?'dark':'light';try{var p=JSON.parse(localStorage.getItem('inema.prefs')||'{}');p.theme=d?'inema-dark':'claro';localStorage.setItem('inema.prefs',JSON.stringify(p));localStorage.setItem('theme',d?'dark':'light');}catch(e){}s();}); })();
+    function copyBox(btn){ try{ var pre=btn.closest('.copybox').querySelector('pre'); navigator.clipboard.writeText(pre.textContent); var o=btn.textContent; btn.textContent='copiado ✓'; setTimeout(function(){btn.textContent=o;},1500);}catch(e){} }
+  </script>
+  <script src="../../assets/learn.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      if (window.INEMA && typeof INEMA.init === 'function') INEMA.init();
+    });
+  </script>
+</body>
+</html>

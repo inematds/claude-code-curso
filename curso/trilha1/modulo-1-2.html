@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="inema-course" content="claude-code">
+  <title>1.2 Navegando o CLI como um Pro | Claude Code</title>
+  <script>
+  (function(){try{var html=document.documentElement;var DEF={theme:'inema-dark',font:'inter',fontScale:100,lineWidth:68,leading:1.7,accent:'emerald'};function clone(o){var r={};for(var x in o)r[x]=o[x];return r;}var p=clone(DEF);try{var raw=localStorage.getItem('inema.prefs');if(raw){var parsed=JSON.parse(raw);if(parsed&&typeof parsed==='object'){for(var k in DEF)if(parsed[k]!=null)p[k]=parsed[k];}}else{var legacy=localStorage.getItem('theme');if(legacy==='light')p.theme='claro';else if(legacy==='dark')p.theme='inema-dark';}}catch(e){p=clone(DEF);}var THEMES={'inema-dark':{dark:true,attr:null,cs:'dark'},'claro':{dark:false,attr:null,cs:'light'},'sepia':{dark:false,attr:'sepia',cs:'light'},'foco':{dark:null,attr:'foco',cs:null},'contraste':{dark:true,attr:'contraste',cs:'dark'}};var t=THEMES[p.theme]||THEMES['inema-dark'];if(t.dark===true)html.classList.add('dark');else if(t.dark===false)html.classList.remove('dark');if(t.attr)html.setAttribute('data-theme',t.attr);else html.removeAttribute('data-theme');html.style.colorScheme=(t.cs?t.cs:(html.classList.contains('dark')?'dark':'light'));html.setAttribute('data-font',p.font||'inter');html.setAttribute('data-accent',p.accent||'emerald');var s=html.style,scale=(+p.fontScale||100);s.setProperty('--inema-font-scale',(scale/100).toString());s.setProperty('font-size',scale+'%');s.setProperty('--measure',(+p.lineWidth||68)+'ch');s.setProperty('--lh-body',(+p.leading||1.7).toString());}catch(err){try{document.documentElement.classList.add('dark');document.documentElement.style.colorScheme='dark';}catch(e){}}})();
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config={darkMode:'class',theme:{extend:{colors:{primary:'#FACC15',dark:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563'}}}}}</script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/learn.css">
+  <script type="application/json" data-inema-manifest>
+{"course":"claude-code","tracks":[{"n":"1","title":"CLI e Configuração","modules":[{"id":"1-1","title":"Instalação e Primeiro Comando","topics":6,"href":"curso/trilha1/modulo-1-1.html"},{"id":"1-2","title":"Navegando o CLI como um Pro","topics":6,"href":"curso/trilha1/modulo-1-2.html"},{"id":"1-3","title":"CLAUDE.md — O Cérebro do Projeto","topics":6,"href":"curso/trilha1/modulo-1-3.html"},{"id":"1-4","title":"Configuração Avançada","topics":6,"href":"curso/trilha1/modulo-1-4.html"},{"id":"1-5","title":"Memory e Contexto Persistente","topics":6,"href":"curso/trilha1/modulo-1-5.html"},{"id":"1-6","title":"Seu Workflow Pessoal","topics":6,"href":"curso/trilha1/modulo-1-6.html"}]},{"n":"2","title":"Plan e Loop Modes","modules":[{"id":"2-1","title":"Plan Mode — Pense Antes de Codar","topics":6,"href":"curso/trilha2/modulo-2-1.html"},{"id":"2-2","title":"Planos que Funcionam","topics":6,"href":"curso/trilha2/modulo-2-2.html"},{"id":"2-3","title":"Loop Mode — Automação Iterativa","topics":6,"href":"curso/trilha2/modulo-2-3.html"},{"id":"2-4","title":"Patterns de Loop na Prática","topics":6,"href":"curso/trilha2/modulo-2-4.html"},{"id":"2-5","title":"Combinando Plan + Loop","topics":6,"href":"curso/trilha2/modulo-2-5.html"},{"id":"2-6","title":"Agentic Coding — O Novo Normal","topics":6,"href":"curso/trilha2/modulo-2-6.html"}]},{"n":"3","title":"MCP Servers","modules":[{"id":"3-1","title":"O que são MCP Servers","topics":6,"href":"curso/trilha3/modulo-3-1.html"},{"id":"3-2","title":"Seus Primeiros MCPs","topics":6,"href":"curso/trilha3/modulo-3-2.html"},{"id":"3-3","title":"MCPs de Produtividade","topics":6,"href":"curso/trilha3/modulo-3-3.html"},{"id":"3-4","title":"MCPs de Database e APIs","topics":6,"href":"curso/trilha3/modulo-3-4.html"},{"id":"3-5","title":"Criando seu Próprio MCP Server","topics":6,"href":"curso/trilha3/modulo-3-5.html"},{"id":"3-6","title":"Ecossistema e Marketplace","topics":6,"href":"curso/trilha3/modulo-3-6.html"}]},{"n":"4","title":"Subagentes e Git","modules":[{"id":"4-1","title":"Subagentes — Conceitos","topics":6,"href":"curso/trilha4/modulo-4-1.html"},{"id":"4-2","title":"Paralelismo Real","topics":6,"href":"curso/trilha4/modulo-4-2.html"},{"id":"4-3","title":"Patterns de Multi-Agent","topics":6,"href":"curso/trilha4/modulo-4-3.html"},{"id":"4-4","title":"Git com IA — Versionamento","topics":6,"href":"curso/trilha4/modulo-4-4.html"},{"id":"4-5","title":"Pull Requests e Code Review","topics":6,"href":"curso/trilha4/modulo-4-5.html"},{"id":"4-6","title":"CI/CD e GitHub Actions","topics":6,"href":"curso/trilha4/modulo-4-6.html"}]},{"n":"5","title":"Python e Ship","modules":[{"id":"5-1","title":"Python + Claude Code","topics":6,"href":"curso/trilha5/modulo-5-1.html"},{"id":"5-2","title":"Automação de Scripts","topics":6,"href":"curso/trilha5/modulo-5-2.html"},{"id":"5-3","title":"FastAPI e Web Services","topics":6,"href":"curso/trilha5/modulo-5-3.html"},{"id":"5-4","title":"Testing Automatizado","topics":6,"href":"curso/trilha5/modulo-5-4.html"},{"id":"5-5","title":"Deploy e Infraestrutura","topics":6,"href":"curso/trilha5/modulo-5-5.html"},{"id":"5-6","title":"Ship Your Product","topics":6,"href":"curso/trilha5/modulo-5-6.html"}]}]}
+</script>
+  <style>
+    body{font-family:'Inter',sans-serif}.dark body{background-color:#111827}[id^="topico-"],[id^="modulo-"]{scroll-margin-top:5rem}.termo{border-bottom:1px dashed #34d399;cursor:help;font-weight:600;color:#6ee7b7}html:not(.dark) .termo{color:#047857;border-color:#059669}.copybox pre{white-space:pre-wrap;word-break:break-word}
+    html:not(.dark) body{background-color:#f8fafc}html:not(.dark) .bg-dark-900{background-color:#fff}html:not(.dark) .bg-dark-800{background-color:#f9fafb}html:not(.dark) .bg-dark-700{background-color:#f3f4f6}html:not(.dark) .bg-dark-600{background-color:#e5e7eb}html:not(.dark) .text-neutral-100{color:#111827}html:not(.dark) .text-neutral-300{color:#4b5563}html:not(.dark) .text-neutral-400{color:#6b7280}html:not(.dark) .text-neutral-500{color:#9ca3af}html:not(.dark) .border-dark-600{border-color:#d1d5db}html:not(.dark) .border-dark-700{border-color:#e5e7eb}html:not(.dark) .text-emerald-400{color:#059669}html:not(.dark) .bg-emerald-500\/20{background-color:rgba(5,150,105,0.12)}html:not(.dark) .bg-emerald-500\/10{background-color:rgba(5,150,105,0.08)}html:not(.dark) .bg-emerald-900\/20{background-color:rgba(5,150,105,0.08)}html:not(.dark) .border-emerald-500\/30{border-color:rgba(5,150,105,0.25)}html:not(.dark) .hover\:bg-emerald-500\/30:hover{background-color:rgba(5,150,105,0.18)}html:not(.dark) .hover\:text-emerald-400:hover{color:#059669}html:not(.dark) [class*="bg-gradient-to"]{background-image:none!important}html:not(.dark) .text-primary{color:#a16207}html:not(.dark) .bg-primary\/10{background-color:rgba(161,98,7,0.08)}html:not(.dark) .border-primary\/30{border-color:rgba(161,98,7,0.25)}html:not(.dark) .text-sky-400{color:#0369a1}html:not(.dark) .text-yellow-400{color:#a16207}html:not(.dark) .hover\:text-sky-300:hover{color:#0284c7}html:not(.dark) .text-red-400{color:#b91c1c}html:not(.dark) .text-blue-400{color:#2563eb}html:not(.dark) .bg-blue-900\/20{background-color:rgba(37,99,235,0.08)}html:not(.dark) .border-blue-500\/30{border-color:rgba(37,99,235,0.25)}html:not(.dark) .bg-red-900\/20{background-color:rgba(185,28,28,0.07)}html:not(.dark) .border-red-500\/30{border-color:rgba(185,28,28,0.25)}html:not(.dark) .bg-dark-900\/95{background-color:rgba(255,255,255,0.95)}
+    .dark .border-dark-600{border-color:#374151}.dark .divide-dark-600>:not([hidden])~:not([hidden]){border-color:#374151}html:not(.dark) svg[role="img"]{filter:saturate(0.82) brightness(0.96)}
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+  <a href="#conteudo" class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:top-2 focus:left-2 focus:px-4 focus:py-2 focus:bg-dark-800 focus:text-emerald-400 focus:rounded-lg">Pular para o conteudo</a>
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex justify-between items-center h-14"><div class="flex items-center space-x-4"><a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300"><span class="text-2xl">🤖</span><span class="font-bold text-lg hidden sm:inline">Claude Code</span></a><span class="text-neutral-600">|</span><a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a></div><div class="flex items-center space-x-1 sm:space-x-2"><a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-emerald-400 bg-emerald-500/10"><span class="sm:hidden">T1</span><span class="hidden sm:inline">CLI</span></a><a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Modos</span></a><a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors"><span class="sm:hidden">T3</span><span class="hidden sm:inline">MCP</span></a><a href="../trilha4/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors"><span class="sm:hidden">T4</span><span class="hidden sm:inline">Agentes</span></a><a href="../trilha5/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-teal-400 hover:bg-teal-500/10 transition-colors"><span class="sm:hidden">T5</span><span class="hidden sm:inline">Python</span></a><button type="button" data-inema-journey-open class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm text-neutral-300 hover:text-neutral-100 hover:bg-dark-700 transition-colors ml-1"><span aria-hidden="true">◷</span><span>Minha jornada</span><span class="inema-journey-badge hidden" aria-hidden="true"></span></button><button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-1" aria-label="Alternar tema"><svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg><svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg></button></div></div></div></nav>
+
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4" aria-label="Breadcrumb"><div class="flex items-center space-x-2 text-sm text-neutral-400"><a href="../../index.html" class="hover:text-emerald-400">Inicio</a><span>/</span><a href="index.html" class="hover:text-emerald-400">Trilha 1</a><span>/</span><span class="text-emerald-400">Modulo 1.2</span></div></nav>
+
+  <header class="bg-gradient-to-br from-emerald-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <span class="inline-block px-3 py-1 bg-emerald-500/20 text-emerald-400 text-xs font-semibold rounded-full mb-4">MODULO 1.2</span>
+    <h1 class="text-3xl sm:text-4xl font-bold mb-4">⌨️ Navegando o CLI como um Pro</h1>
+    <p class="text-lg text-neutral-400 max-w-3xl">Atalhos de teclado, slash commands, modelo e contexto, sessões, imagens e pipes Unix. Tudo que separa um usuario basico de um power user.</p>
+    <div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+      <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">6</div><div class="text-xs text-neutral-400">Topicos</div></div>
+      <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">~40</div><div class="text-xs text-neutral-400">Minutos</div></div>
+      <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">1.1</div><div class="text-xs text-neutral-400">Pre-req</div></div>
+      <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">Pratico</div><div class="text-xs text-neutral-400">Tipo</div></div>
+    </div>
+    <div class="mt-6 max-w-2xl"><div data-inema-meter="modulo:1-2" class="inema-meter flex items-center gap-3" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-label="Progresso do modulo 1.2"><span class="text-sm text-neutral-400">Progresso:</span><span class="inema-meter-pct text-emerald-400 font-bold text-sm">0%</span><span class="inema-meter-count text-xs text-neutral-500">0 de 6</span></div></div>
+  </div></header>
+
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12"><div class="lg:grid lg:grid-cols-[230px_1fr] lg:gap-10">
+    <nav data-inema-toc aria-label="Indice" class="hidden lg:block sticky top-24 self-start">
+      <p class="text-sm text-neutral-400 mb-3">Seção <span class="inema-toc-pos">1</span> de <span class="inema-toc-total">6</span></p>
+      <ul class="space-y-1 text-sm">
+        <li><a href="#topico-1" class="inema-toc-link block px-3 py-1.5 rounded-lg text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10">1. Atalhos de teclado</a></li>
+        <li><a href="#topico-2" class="inema-toc-link block px-3 py-1.5 rounded-lg text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10">2. Slash commands</a></li>
+        <li><a href="#topico-3" class="inema-toc-link block px-3 py-1.5 rounded-lg text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10">3. Modelo e contexto</a></li>
+        <li><a href="#topico-4" class="inema-toc-link block px-3 py-1.5 rounded-lg text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10">4. Sessões e /resume</a></li>
+        <li><a href="#topico-5" class="inema-toc-link block px-3 py-1.5 rounded-lg text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10">5. Imagens e screenshots</a></li>
+        <li><a href="#topico-6" class="inema-toc-link block px-3 py-1.5 rounded-lg text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10">6. Output e pipes</a></li>
+      </ul>
+    </nav>
+
+    <main id="conteudo" class="inema-prose min-w-0">
+
+      <!-- TOPICO 1 -->
+      <section id="topico-1" data-inema-topic="modulo-1-2#topico-1" class="mb-16">
+        <div class="flex items-center justify-between gap-4 mb-6"><div class="flex items-center space-x-4"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl flex-shrink-0">1</span><h2 class="text-2xl font-bold">⚡ Atalhos de teclado essenciais</h2></div><button type="button" data-inema-doubt-toggle aria-pressed="false" title="Marcar duvida" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-dark-700 border border-dark-600 text-neutral-300 hover:bg-dark-600 transition-colors text-sm flex-shrink-0"><span aria-hidden="true">?</span><span class="hidden sm:inline">Tenho duvida</span></button></div>
+        <div class="bg-primary/10 border border-primary/30 rounded-xl p-5 mb-6"><p class="text-neutral-200"><strong class="text-primary">🧠 Imagine assim:</strong> atalhos de teclado no Claude Code sao como os atalhos no Vim. No começo voce ignora, depois de aprender nao vive sem. A diferença e que aqui sao apenas 5-6 teclas.</p></div>
+        <p data-inema-block="m1-2-t1-p1" class="text-neutral-300 mb-4 leading-relaxed">Dentro da sessão interativa do Claude Code, algumas teclas tem comportamento especial que acelera drasticamente seu workflow. Os mais importantes sao poucos e faceis de memorizar:</p>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+          <div class="bg-emerald-900/20 rounded-xl border border-emerald-500/30 p-5">
+            <h4 class="font-bold text-emerald-400 mb-3">✓ Atalhos essenciais</h4>
+            <ul class="space-y-2 text-neutral-300 text-sm">
+              <li>• <strong>Escape</strong> — cancela a ação corrente / volta ao prompt</li>
+              <li>• <strong>Tab</strong> — aceita sugestão / autocomplete</li>
+              <li>• <strong>Ctrl+C</strong> — interrompe a geração em andamento</li>
+              <li>• <strong>Shift+Tab</strong> — rejeita sugestão</li>
+              <li>• <strong>Enter</strong> duplo — envia mensagem multi-linha</li>
+            </ul>
+          </div>
+          <div class="bg-dark-800 rounded-xl border border-dark-600 p-5">
+            <h4 class="font-bold text-neutral-300 mb-3">→ Dicas de navegação</h4>
+            <ul class="space-y-2 text-neutral-300 text-sm">
+              <li>• <strong>Seta para cima</strong> — editar ultima mensagem</li>
+              <li>• <strong>Ctrl+L</strong> — limpar tela (sem perder contexto)</li>
+              <li>• <strong>/</strong> no inicio — abre slash commands</li>
+              <li>• <strong>@</strong> — referenciar arquivo</li>
+              <li>• Colar imagem — analise visual automatica</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="rounded-2xl border border-emerald-500/30 bg-dark-900/40 p-3 sm:p-4 mb-6 overflow-hidden">
+          <svg viewBox="0 0 1000 180" class="w-full h-auto" role="img" aria-label="Mapa de teclas: Escape, Tab, Ctrl+C, Enter convergem para controle total da sessão">
+            <defs><pattern id="m12a-grid" width="32" height="32" patternUnits="userSpaceOnUse"><circle cx="1.3" cy="1.3" r="1.3" fill="#10b981" opacity="0.12"/></pattern><filter id="m12a-glow" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="1.8" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter><marker id="m12a-ah" markerWidth="9" markerHeight="9" refX="6.5" refY="4.5" orient="auto"><path d="M0,0 L8,4.5 L0,9 L2.4,4.5 Z" fill="#34d399"/></marker></defs>
+            <rect x="0" y="0" width="1000" height="180" fill="url(#m12a-grid)"/>
+            <g font-family="Inter,sans-serif" font-size="13" font-weight="600">
+              <rect x="40" y="30" width="130" height="40" rx="10" fill="#0e1b26" stroke="#38bdf8" stroke-width="2"/><text x="105" y="55" text-anchor="middle" fill="#bfe6ff">Escape</text>
+              <rect x="40" y="80" width="130" height="40" rx="10" fill="#0e1b26" stroke="#38bdf8" stroke-width="2"/><text x="105" y="105" text-anchor="middle" fill="#bfe6ff">Tab</text>
+              <rect x="40" y="130" width="130" height="40" rx="10" fill="#0e1b26" stroke="#38bdf8" stroke-width="2"/><text x="105" y="155" text-anchor="middle" fill="#bfe6ff">Ctrl+C</text>
+              <rect x="220" y="55" width="130" height="40" rx="10" fill="#0e1b26" stroke="#38bdf8" stroke-width="2"/><text x="285" y="80" text-anchor="middle" fill="#bfe6ff">Shift+Tab</text>
+              <rect x="220" y="105" width="130" height="40" rx="10" fill="#0e1b26" stroke="#38bdf8" stroke-width="2"/><text x="285" y="130" text-anchor="middle" fill="#bfe6ff">Enter ×2</text>
+            </g>
+            <g fill="none" stroke="#34d399" stroke-width="1.8" opacity="0.5">
+              <path d="M170,50 C400,50 500,90 620,90" marker-end="url(#m12a-ah)"/>
+              <path d="M170,100 C400,100 500,90 620,90" marker-end="url(#m12a-ah)"/>
+              <path d="M170,150 C400,150 500,90 620,90" marker-end="url(#m12a-ah)"/>
+              <path d="M350,75 C500,75 550,90 620,90" marker-end="url(#m12a-ah)"/>
+              <path d="M350,125 C500,125 550,90 620,90" marker-end="url(#m12a-ah)"/>
+            </g>
+            <g filter="url(#m12a-glow)"><rect x="620" y="55" width="320" height="70" rx="16" fill="#0e2018" stroke="#34d399" stroke-width="2.5"/></g>
+            <text x="780" y="85" text-anchor="middle" fill="#34d399" font-family="Inter,sans-serif" font-weight="600" font-size="17">Controle total da sessão</text>
+            <text x="780" y="108" text-anchor="middle" fill="#9fe7c8" font-family="Inter,sans-serif" font-size="11">5 teclas = power user</text>
+          </svg>
+        </div>
+
+        <div class="bg-dark-800/60 border-l-4 border-emerald-500 rounded-r-lg p-4 mb-6"><p class="text-sm text-neutral-300"><strong class="text-emerald-400">Em 1 frase:</strong> Escape, Tab, Ctrl+C, Shift+Tab e Enter duplo cobrem 95% da interação.</p></div>
+        <div class="flex justify-start mt-6"><button type="button" data-inema-read-toggle aria-pressed="false" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-emerald-500/20 border border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/30 transition-colors"><span class="inema-read-icon" aria-hidden="true">○</span><span class="inema-read-label">Marcar como lido</span></button></div>
+      </section>
+
+      <!-- TOPICO 2 -->
+      <section id="topico-2" data-inema-topic="modulo-1-2#topico-2" class="mb-16">
+        <div class="flex items-center justify-between gap-4 mb-6"><div class="flex items-center space-x-4"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl flex-shrink-0">2</span><h2 class="text-2xl font-bold">🔧 Slash commands</h2></div><button type="button" data-inema-doubt-toggle aria-pressed="false" title="Marcar duvida" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-dark-700 border border-dark-600 text-neutral-300 hover:bg-dark-600 transition-colors text-sm flex-shrink-0"><span aria-hidden="true">?</span><span class="hidden sm:inline">Tenho duvida</span></button></div>
+        <div class="bg-primary/10 border border-primary/30 rounded-xl p-5 mb-6"><p class="text-neutral-200"><strong class="text-primary">🧠 Imagine assim:</strong> slash commands sao o painel de controle escondido do Claude Code. Digitou <code>/</code>, apareceu um menu. E como o command palette do VS Code, mas dentro da conversa com a IA.</p></div>
+        <p data-inema-block="m1-2-t2-p1" class="text-neutral-300 mb-4 leading-relaxed">Dentro de uma sessão interativa, digitar <code class="text-emerald-400">/</code> no inicio da mensagem ativa os <span class="termo" title="Comandos internos do Claude Code acionados com barra">slash commands</span>. Eles controlam a sessão sem gastar tokens de conversa. Os mais usados:</p>
+
+        <div class="copybox bg-dark-900 border border-emerald-500/30 rounded-xl overflow-hidden mb-6">
+          <div class="flex items-center justify-between px-4 py-2 bg-dark-800 border-b border-dark-600"><span class="text-xs text-emerald-400 font-mono">slash commands essenciais</span><button type="button" onclick="copyBox(this)" class="text-xs px-2 py-1 rounded bg-emerald-500/20 text-emerald-400 hover:bg-emerald-500/30 transition-colors">copiar</button></div>
+          <pre class="p-4 text-sm text-neutral-200 font-mono leading-relaxed">/help       — lista todos os comandos disponíveis
+/clear      — limpa o contexto da conversa atual
+/compact    — comprime o contexto para liberar espaço
+/model      — ver ou trocar o modelo em uso
+/memory     — salvar uma nota persistente
+/resume     — retomar sessão anterior
+/cost       — ver quanto gastou na sessão atual</pre>
+        </div>
+
+        <!-- Timeline component -->
+        <div class="relative pl-8 mb-6">
+          <div class="absolute left-3 top-0 bottom-0 w-0.5 bg-emerald-500/30"></div>
+          <div class="mb-6 relative"><div class="absolute left-[-1.35rem] top-1 w-3 h-3 bg-emerald-400 rounded-full"></div><h4 class="font-semibold text-emerald-400">/help</h4><p class="text-neutral-300 text-sm">O ponto de partida. Mostra tudo que esta disponivel. Rode quando estiver perdido.</p></div>
+          <div class="mb-6 relative"><div class="absolute left-[-1.35rem] top-1 w-3 h-3 bg-emerald-400 rounded-full"></div><h4 class="font-semibold text-emerald-400">/clear</h4><p class="text-neutral-300 text-sm">Apaga todo o contexto. Util quando voce quer recomeçar sem fechar o terminal.</p></div>
+          <div class="mb-6 relative"><div class="absolute left-[-1.35rem] top-1 w-3 h-3 bg-emerald-400 rounded-full"></div><h4 class="font-semibold text-emerald-400">/model</h4><p class="text-neutral-300 text-sm">Mostra qual modelo esta ativo. Pode trocar entre Opus e Sonnet sem sair da sessão.</p></div>
+          <div class="relative"><div class="absolute left-[-1.35rem] top-1 w-3 h-3 bg-emerald-400 rounded-full"></div><h4 class="font-semibold text-emerald-400">/memory</h4><p class="text-neutral-300 text-sm">Salva uma preferência que persiste entre sessões. Exemplo: "sempre use TypeScript".</p></div>
+        </div>
+
+        <div class="bg-dark-800/60 border-l-4 border-emerald-500 rounded-r-lg p-4 mb-6"><p class="text-sm text-neutral-300"><strong class="text-emerald-400">Em 1 frase:</strong> digite <code>/</code> para acessar o painel de controle do Claude Code dentro da sessão.</p></div>
+        <div class="flex justify-start mt-6"><button type="button" data-inema-read-toggle aria-pressed="false" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-emerald-500/20 border border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/30 transition-colors"><span class="inema-read-icon" aria-hidden="true">○</span><span class="inema-read-label">Marcar como lido</span></button></div>
+      </section>
+
+      <!-- TOPICO 3 -->
+      <section id="topico-3" data-inema-topic="modulo-1-2#topico-3" class="mb-16">
+        <div class="flex items-center justify-between gap-4 mb-6"><div class="flex items-center space-x-4"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl flex-shrink-0">3</span><h2 class="text-2xl font-bold">🧠 Modelo e janela de contexto</h2></div><button type="button" data-inema-doubt-toggle aria-pressed="false" title="Marcar duvida" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-dark-700 border border-dark-600 text-neutral-300 hover:bg-dark-600 transition-colors text-sm flex-shrink-0"><span aria-hidden="true">?</span><span class="hidden sm:inline">Tenho duvida</span></button></div>
+        <div class="bg-primary/10 border border-primary/30 rounded-xl p-5 mb-6"><p class="text-neutral-200"><strong class="text-primary">🧠 Imagine assim:</strong> o modelo e o cerebro; a janela de contexto e a memória de trabalho. Imagine que o Claude tem uma mesa de trabalho com espaço limitado. Tudo que voce diz e tudo que ele le vai pra mesa. Quando enche, algo cai.</p></div>
+        <p data-inema-block="m1-2-t3-p1" class="text-neutral-300 mb-4 leading-relaxed">O Claude Code usa modelos da familia Claude da Anthropic. O padrao costuma ser o <strong class="text-emerald-400">Claude Sonnet</strong> (rapido e capaz), mas voce pode mudar para <strong class="text-emerald-400">Claude Opus</strong> (mais profundo e preciso) a qualquer momento. A <span class="termo" title="A quantidade maxima de texto (em tokens) que o modelo consegue processar de uma vez">janela de contexto</span> e o limite do que o modelo ve ao mesmo tempo: tudo que voce disse, tudo que ele leu, todos os arquivos inspecionados.</p>
+
+        <div class="bg-blue-900/20 border border-blue-500/30 rounded-xl p-5 mb-6">
+          <h3 class="font-semibold text-blue-400 mb-2">📊 Números que importam</h3>
+          <p class="text-neutral-300 text-sm">O context window do Claude e de aproximadamente <strong>200k tokens</strong> (cerca de 150k palavras). Parece muito, mas um codebase medio consome isso rapido quando o agente le varios arquivos. Cada arquivo lido, cada resposta gerada, cada CLAUDE.md carregado come tokens dessa janela.</p>
+        </div>
+
+        <div class="bg-dark-800/60 border-l-4 border-emerald-500 rounded-r-lg p-4 mb-6"><p class="text-sm text-neutral-300"><strong class="text-emerald-400">Em 1 frase:</strong> Sonnet = rapido, Opus = profundo; 200k tokens e a mesa de trabalho e tudo compete por espaço.</p></div>
+        <div class="flex justify-start mt-6"><button type="button" data-inema-read-toggle aria-pressed="false" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-emerald-500/20 border border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/30 transition-colors"><span class="inema-read-icon" aria-hidden="true">○</span><span class="inema-read-label">Marcar como lido</span></button></div>
+      </section>
+
+      <!-- TOPICO 4 -->
+      <section id="topico-4" data-inema-topic="modulo-1-2#topico-4" class="mb-16">
+        <div class="flex items-center justify-between gap-4 mb-6"><div class="flex items-center space-x-4"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl flex-shrink-0">4</span><h2 class="text-2xl font-bold">💾 Sessões e /resume</h2></div><button type="button" data-inema-doubt-toggle aria-pressed="false" title="Marcar duvida" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-dark-700 border border-dark-600 text-neutral-300 hover:bg-dark-600 transition-colors text-sm flex-shrink-0"><span aria-hidden="true">?</span><span class="hidden sm:inline">Tenho duvida</span></button></div>
+        <div class="bg-primary/10 border border-primary/30 rounded-xl p-5 mb-6"><p class="text-neutral-200"><strong class="text-primary">🧠 Imagine assim:</strong> fechar o terminal nao apaga a conversa. E como fechar um livro com marcador. Quando voce volta, o /resume abre na pagina certa.</p></div>
+        <p data-inema-block="m1-2-t4-p1" class="text-neutral-300 mb-4 leading-relaxed">O Claude Code persiste sessões automaticamente. Cada conversa tem um <span class="termo" title="Identificador unico da sessão">session ID</span> e fica salva localmente. Para retomar, voce pode usar <code class="text-emerald-400">claude --resume</code> na linha de comando ou <code class="text-emerald-400">/resume</code> dentro de uma sessão nova. O Claude vai mostrar um picker com as sessões recentes para voce escolher.</p>
+
+        <div class="copybox bg-dark-900 border border-emerald-500/30 rounded-xl overflow-hidden mb-6">
+          <div class="flex items-center justify-between px-4 py-2 bg-dark-800 border-b border-dark-600"><span class="text-xs text-emerald-400 font-mono">retomando sessões</span><button type="button" onclick="copyBox(this)" class="text-xs px-2 py-1 rounded bg-emerald-500/20 text-emerald-400 hover:bg-emerald-500/30 transition-colors">copiar</button></div>
+          <pre class="p-4 text-sm text-neutral-200 font-mono leading-relaxed"># retomar a última sessão
+claude --resume
+
+# dentro de uma sessão, retomar outra
+/resume
+
+# continuar conversa específica por ID
+claude --resume SESSION_ID</pre>
+        </div>
+
+        <div class="bg-dark-800/60 border-l-4 border-emerald-500 rounded-r-lg p-4 mb-6"><p class="text-sm text-neutral-300"><strong class="text-emerald-400">Em 1 frase:</strong> sessões persistem no disco; <code>--resume</code> ou <code>/resume</code> retoma de onde voce parou.</p></div>
+        <div class="flex justify-start mt-6"><button type="button" data-inema-read-toggle aria-pressed="false" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-emerald-500/20 border border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/30 transition-colors"><span class="inema-read-icon" aria-hidden="true">○</span><span class="inema-read-label">Marcar como lido</span></button></div>
+      </section>
+
+      <!-- TOPICO 5 -->
+      <section id="topico-5" data-inema-topic="modulo-1-2#topico-5" class="mb-16">
+        <div class="flex items-center justify-between gap-4 mb-6"><div class="flex items-center space-x-4"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl flex-shrink-0">5</span><h2 class="text-2xl font-bold">🖼️ Leitura de imagens e screenshots</h2></div><button type="button" data-inema-doubt-toggle aria-pressed="false" title="Marcar duvida" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-dark-700 border border-dark-600 text-neutral-300 hover:bg-dark-600 transition-colors text-sm flex-shrink-0"><span aria-hidden="true">?</span><span class="hidden sm:inline">Tenho duvida</span></button></div>
+        <div class="bg-primary/10 border border-primary/30 rounded-xl p-5 mb-6"><p class="text-neutral-200"><strong class="text-primary">🧠 Imagine assim:</strong> voce pode colar um screenshot de um bug no terminal e o Claude Code vai analisar visualmente, identificar o problema e sugerir o fix. E como ter um par de olhos extra que lê codigo na tela.</p></div>
+        <p data-inema-block="m1-2-t5-p1" class="text-neutral-300 mb-4 leading-relaxed">O Claude Code e <span class="termo" title="Capaz de processar texto e imagens">multimodal</span>. Ele pode ler imagens de tres formas: <strong>colar do clipboard</strong> (Ctrl+V com um screenshot copiado), <strong>referenciar um arquivo</strong> de imagem no filesystem, ou <strong>arrastar e soltar</strong> no terminal (em terminais que suportam). Casos de uso comuns: debug visual de UI, reproduzir um design de um mockup, ler diagramas de arquitetura.</p>
+
+        <div class="bg-red-900/20 border border-red-500/30 rounded-xl p-5 mb-6">
+          <h3 class="font-semibold text-red-400 mb-2">⚠️ Limitações</h3>
+          <p class="text-neutral-300 text-sm">Imagens consomem tokens (e bastante). Um screenshot pode usar 1000+ tokens. Use com moderação e prefira descrever em texto quando possivel. O Claude Code tambem nao consegue editar imagens, apenas analisar.</p>
+        </div>
+
+        <div class="bg-dark-800/60 border-l-4 border-emerald-500 rounded-r-lg p-4 mb-6"><p class="text-sm text-neutral-300"><strong class="text-emerald-400">Em 1 frase:</strong> cole screenshots, passe paths de imagem ou arraste arquivos e o Claude analisa visualmente.</p></div>
+        <div class="flex justify-start mt-6"><button type="button" data-inema-read-toggle aria-pressed="false" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-emerald-500/20 border border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/30 transition-colors"><span class="inema-read-icon" aria-hidden="true">○</span><span class="inema-read-label">Marcar como lido</span></button></div>
+      </section>
+
+      <!-- TOPICO 6 -->
+      <section id="topico-6" data-inema-topic="modulo-1-2#topico-6" class="mb-16">
+        <div class="flex items-center justify-between gap-4 mb-6"><div class="flex items-center space-x-4"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl flex-shrink-0">6</span><h2 class="text-2xl font-bold">📤 Output formatado e pipes</h2></div><button type="button" data-inema-doubt-toggle aria-pressed="false" title="Marcar duvida" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-dark-700 border border-dark-600 text-neutral-300 hover:bg-dark-600 transition-colors text-sm flex-shrink-0"><span aria-hidden="true">?</span><span class="hidden sm:inline">Tenho duvida</span></button></div>
+        <div class="bg-primary/10 border border-primary/30 rounded-xl p-5 mb-6"><p class="text-neutral-200"><strong class="text-primary">🧠 Imagine assim:</strong> o mode <code>-p</code> transforma o Claude Code em um cidadão Unix de primeira classe. Tudo o que ele responde vai pro stdout, pronto para pipar com jq, grep, ou redirecionar para um arquivo.</p></div>
+        <p data-inema-block="m1-2-t6-p1" class="text-neutral-300 mb-4 leading-relaxed">A integracao com o ecossistema Unix e um dos superpoderes do Claude Code. Com <code class="text-emerald-400">claude -p</code>, a saida vai diretamente pro stdout, permitindo encadear com qualquer ferramenta Unix:</p>
+
+        <div class="copybox bg-dark-900 border border-emerald-500/30 rounded-xl overflow-hidden mb-6">
+          <div class="flex items-center justify-between px-4 py-2 bg-dark-800 border-b border-dark-600"><span class="text-xs text-emerald-400 font-mono">exemplos de pipes</span><button type="button" onclick="copyBox(this)" class="text-xs px-2 py-1 rounded bg-emerald-500/20 text-emerald-400 hover:bg-emerald-500/30 transition-colors">copiar</button></div>
+          <pre class="p-4 text-sm text-neutral-200 font-mono leading-relaxed"># gerar JSON e processar com jq
+claude -p "liste 5 tarefas em JSON" | jq '.[]'
+
+# analisar um arquivo e salvar resultado
+claude -p "revise este código" < app.py > review.md
+
+# pipe de entrada: mandar conteúdo para análise
+git diff | claude -p "resuma estas mudanças"
+
+# output em JSON estruturado
+claude -p "..." --output-format json</pre>
+        </div>
+
+        <div class="rounded-2xl border border-emerald-500/30 bg-dark-900/40 p-3 sm:p-4 mb-6 overflow-hidden">
+          <svg viewBox="0 0 1000 160" class="w-full h-auto" role="img" aria-label="Pipeline Unix: entrada via pipe, Claude Code processa, saida via pipe para jq/grep/arquivo">
+            <defs><pattern id="m12f-grid" width="32" height="32" patternUnits="userSpaceOnUse"><circle cx="1.3" cy="1.3" r="1.3" fill="#10b981" opacity="0.12"/></pattern><marker id="m12f-ah" markerWidth="9" markerHeight="9" refX="6.5" refY="4.5" orient="auto"><path d="M0,0 L8,4.5 L0,9 L2.4,4.5 Z" fill="#34d399"/></marker><filter id="m12f-glow" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="1.8" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter></defs>
+            <rect x="0" y="0" width="1000" height="160" fill="url(#m12f-grid)"/>
+            <rect x="40" y="45" width="150" height="60" rx="12" fill="#0e1b26" stroke="#38bdf8" stroke-width="2"/>
+            <text x="115" y="72" text-anchor="middle" fill="#bfe6ff" font-family="Inter,sans-serif" font-weight="600" font-size="14">stdin / pipe</text>
+            <text x="115" y="92" text-anchor="middle" fill="#9ad6ff" font-family="Inter,sans-serif" font-size="10">git diff | ...</text>
+            <path d="M190,75 L310,75" fill="none" stroke="#34d399" stroke-width="1.8" opacity="0.55" marker-end="url(#m12f-ah)"/>
+            <g filter="url(#m12f-glow)"><rect x="310" y="35" width="240" height="80" rx="16" fill="#0e2018" stroke="#34d399" stroke-width="2.5"/></g>
+            <text x="430" y="70" text-anchor="middle" fill="#34d399" font-family="Inter,sans-serif" font-weight="600" font-size="16">claude -p "..."</text>
+            <text x="430" y="95" text-anchor="middle" fill="#9fe7c8" font-family="Inter,sans-serif" font-size="11">processa e responde</text>
+            <path d="M550,75 L660,75" fill="none" stroke="#34d399" stroke-width="1.8" opacity="0.55" marker-end="url(#m12f-ah)"/>
+            <rect x="660" y="25" width="150" height="36" rx="8" fill="#0e1b26" stroke="#38bdf8" stroke-width="2"/>
+            <text x="735" y="48" text-anchor="middle" fill="#bfe6ff" font-family="Inter,sans-serif" font-weight="600" font-size="12">| jq</text>
+            <rect x="660" y="68" width="150" height="36" rx="8" fill="#0e1b26" stroke="#38bdf8" stroke-width="2"/>
+            <text x="735" y="91" text-anchor="middle" fill="#bfe6ff" font-family="Inter,sans-serif" font-weight="600" font-size="12">| grep</text>
+            <rect x="660" y="111" width="150" height="36" rx="8" fill="#0e1b26" stroke="#38bdf8" stroke-width="2"/>
+            <text x="735" y="134" text-anchor="middle" fill="#bfe6ff" font-family="Inter,sans-serif" font-weight="600" font-size="12">> arquivo.md</text>
+          </svg>
+        </div>
+
+        <div class="bg-dark-800/60 border-l-4 border-emerald-500 rounded-r-lg p-4 mb-6"><p class="text-sm text-neutral-300"><strong class="text-emerald-400">Em 1 frase:</strong> <code>claude -p</code> + pipes Unix = IA como ferramenta de linha de comando composivel.</p></div>
+        <div class="flex justify-start mt-6"><button type="button" data-inema-read-toggle aria-pressed="false" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-emerald-500/20 border border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/30 transition-colors"><span class="inema-read-icon" aria-hidden="true">○</span><span class="inema-read-label">Marcar como lido</span></button></div>
+      </section>
+
+      <!-- RESUMO -->
+      <section class="mb-12">
+        <div class="bg-gradient-to-br from-emerald-900/40 via-dark-800 to-dark-800 rounded-xl border border-emerald-500/30 p-8">
+          <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">🧾</span> Resumo do Modulo</h2>
+          <div class="space-y-4 mb-8">
+            <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">5 atalhos essenciais</strong><span class="text-neutral-400"> — Escape, Tab, Ctrl+C, Shift+Tab e Enter duplo.</span></div></div>
+            <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">Slash commands</strong><span class="text-neutral-400"> — /help, /clear, /model, /memory, /resume controlam a sessão.</span></div></div>
+            <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">Modelo e contexto</strong><span class="text-neutral-400"> — Sonnet (rapido) ou Opus (profundo); 200k tokens de janela.</span></div></div>
+            <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">Pipes Unix</strong><span class="text-neutral-400"> — claude -p transforma a IA em ferramenta composivel do terminal.</span></div></div>
+          </div>
+          <div class="bg-dark-800/50 rounded-lg p-4 mb-8"><h3 class="font-semibold text-emerald-400 mb-2">Proximo modulo:</h3><p class="text-neutral-300">1.3 — CLAUDE.md: o arquivo que transforma o Claude Code de genérico em especialista.</p></div>
+          <div class="flex flex-col sm:flex-row gap-4"><a href="modulo-1-1.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Modulo Anterior</a><a href="modulo-1-3.html" class="flex-1 text-center px-6 py-3 bg-emerald-600 text-white rounded-lg font-semibold hover:bg-emerald-500 transition-colors">Proximo Modulo →</a></div>
+        </div>
+      </section>
+
+    </main>
+  </div></div>
+
+  <footer class="border-t border-dark-600 py-8 mt-16"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm"><p>Transição para o Claude Code · <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300">INEMA.CLUB</a></p></div></footer>
+  <script>
+    function toggleTopic(button){const ti=button.closest('.topic-item');if(!ti)return;const e=ti.querySelector('.topic-explanation');if(e){e.classList.toggle('active');button.setAttribute('aria-expanded',e.classList.contains('active'));}}
+    (function(){const tt=document.getElementById('theme-toggle'),di=document.getElementById('theme-toggle-dark-icon'),li=document.getElementById('theme-toggle-light-icon'),h=document.documentElement;function s(){if(h.classList.contains('dark')){li.classList.remove('hidden');di.classList.add('hidden');}else{di.classList.remove('hidden');li.classList.add('hidden');}}s();tt&&tt.addEventListener('click',function(){h.classList.toggle('dark');var d=h.classList.contains('dark');h.style.colorScheme=d?'dark':'light';try{var p=JSON.parse(localStorage.getItem('inema.prefs')||'{}');p.theme=d?'inema-dark':'claro';localStorage.setItem('inema.prefs',JSON.stringify(p));localStorage.setItem('theme',d?'dark':'light');}catch(e){}s();});})();
+    function openModal(id){var m=document.getElementById(id);if(m){m.classList.remove('hidden');document.body.style.overflow='hidden';}}
+    function closeModal(){document.querySelectorAll('.modal').forEach(function(m){m.classList.add('hidden');});document.body.style.overflow='auto';}
+    document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal();});
+    function copyBox(btn){try{var pre=btn.closest('.copybox').querySelector('pre');navigator.clipboard.writeText(pre.textContent);var o=btn.textContent;btn.textContent='copiado ✓';setTimeout(function(){btn.textContent=o;},1500);}catch(e){}}
+  </script>
+  <script src="../../assets/learn.js"></script>
+  <script>document.addEventListener('DOMContentLoaded',function(){if(window.INEMA&&typeof INEMA.init==='function')INEMA.init();});</script>
+</body>
+</html>

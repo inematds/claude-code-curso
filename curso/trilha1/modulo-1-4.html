@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="inema-course" content="claude-code">
+  <title>1.4 Configuração Avançada | Claude Code</title>
+  <script>
+  (function(){try{var html=document.documentElement;var DEF={theme:'inema-dark',font:'inter',fontScale:100,lineWidth:68,leading:1.7,accent:'emerald'};function clone(o){var r={};for(var x in o)r[x]=o[x];return r;}var p=clone(DEF);try{var raw=localStorage.getItem('inema.prefs');if(raw){var parsed=JSON.parse(raw);if(parsed&&typeof parsed==='object'){for(var k in DEF)if(parsed[k]!=null)p[k]=parsed[k];}}else{var legacy=localStorage.getItem('theme');if(legacy==='light')p.theme='claro';else if(legacy==='dark')p.theme='inema-dark';}}catch(e){p=clone(DEF);}var THEMES={'inema-dark':{dark:true,attr:null,cs:'dark'},'claro':{dark:false,attr:null,cs:'light'},'sepia':{dark:false,attr:'sepia',cs:'light'},'foco':{dark:null,attr:'foco',cs:null},'contraste':{dark:true,attr:'contraste',cs:'dark'}};var t=THEMES[p.theme]||THEMES['inema-dark'];if(t.dark===true)html.classList.add('dark');else if(t.dark===false)html.classList.remove('dark');if(t.attr)html.setAttribute('data-theme',t.attr);else html.removeAttribute('data-theme');html.style.colorScheme=(t.cs?t.cs:(html.classList.contains('dark')?'dark':'light'));html.setAttribute('data-font',p.font||'inter');html.setAttribute('data-accent',p.accent||'emerald');var s=html.style,scale=(+p.fontScale||100);s.setProperty('--inema-font-scale',(scale/100).toString());s.setProperty('font-size',scale+'%');s.setProperty('--measure',(+p.lineWidth||68)+'ch');s.setProperty('--lh-body',(+p.leading||1.7).toString());}catch(err){try{document.documentElement.classList.add('dark');document.documentElement.style.colorScheme='dark';}catch(e){}}})()
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config={darkMode:'class',theme:{extend:{colors:{primary:'#FACC15',dark:{900:'#111827',800:'#1f2937',700:'#374151',600:'#4b5563'}}}}}</script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/learn.css">
+  <script type="application/json" data-inema-manifest>
+{"course":"claude-code","tracks":[{"n":"1","title":"CLI e Configuração","modules":[{"id":"1-1","title":"Instalação e Primeiro Comando","topics":6,"href":"curso/trilha1/modulo-1-1.html"},{"id":"1-2","title":"Navegando o CLI como um Pro","topics":6,"href":"curso/trilha1/modulo-1-2.html"},{"id":"1-3","title":"CLAUDE.md — O Cérebro do Projeto","topics":6,"href":"curso/trilha1/modulo-1-3.html"},{"id":"1-4","title":"Configuração Avançada","topics":6,"href":"curso/trilha1/modulo-1-4.html"},{"id":"1-5","title":"Memory e Contexto Persistente","topics":6,"href":"curso/trilha1/modulo-1-5.html"},{"id":"1-6","title":"Seu Workflow Pessoal","topics":6,"href":"curso/trilha1/modulo-1-6.html"}]},{"n":"2","title":"Plan e Loop Modes","modules":[{"id":"2-1","title":"Plan Mode — Pense Antes de Codar","topics":6,"href":"curso/trilha2/modulo-2-1.html"},{"id":"2-2","title":"Planos que Funcionam","topics":6,"href":"curso/trilha2/modulo-2-2.html"},{"id":"2-3","title":"Loop Mode — Automação Iterativa","topics":6,"href":"curso/trilha2/modulo-2-3.html"},{"id":"2-4","title":"Patterns de Loop na Prática","topics":6,"href":"curso/trilha2/modulo-2-4.html"},{"id":"2-5","title":"Combinando Plan + Loop","topics":6,"href":"curso/trilha2/modulo-2-5.html"},{"id":"2-6","title":"Agentic Coding — O Novo Normal","topics":6,"href":"curso/trilha2/modulo-2-6.html"}]},{"n":"3","title":"MCP Servers","modules":[{"id":"3-1","title":"O que são MCP Servers","topics":6,"href":"curso/trilha3/modulo-3-1.html"},{"id":"3-2","title":"Seus Primeiros MCPs","topics":6,"href":"curso/trilha3/modulo-3-2.html"},{"id":"3-3","title":"MCPs de Produtividade","topics":6,"href":"curso/trilha3/modulo-3-3.html"},{"id":"3-4","title":"MCPs de Database e APIs","topics":6,"href":"curso/trilha3/modulo-3-4.html"},{"id":"3-5","title":"Criando seu Próprio MCP Server","topics":6,"href":"curso/trilha3/modulo-3-5.html"},{"id":"3-6","title":"Ecossistema e Marketplace","topics":6,"href":"curso/trilha3/modulo-3-6.html"}]},{"n":"4","title":"Subagentes e Git","modules":[{"id":"4-1","title":"Subagentes — Conceitos","topics":6,"href":"curso/trilha4/modulo-4-1.html"},{"id":"4-2","title":"Paralelismo Real","topics":6,"href":"curso/trilha4/modulo-4-2.html"},{"id":"4-3","title":"Patterns de Multi-Agent","topics":6,"href":"curso/trilha4/modulo-4-3.html"},{"id":"4-4","title":"Git com IA — Versionamento","topics":6,"href":"curso/trilha4/modulo-4-4.html"},{"id":"4-5","title":"Pull Requests e Code Review","topics":6,"href":"curso/trilha4/modulo-4-5.html"},{"id":"4-6","title":"CI/CD e GitHub Actions","topics":6,"href":"curso/trilha4/modulo-4-6.html"}]},{"n":"5","title":"Python e Ship","modules":[{"id":"5-1","title":"Python + Claude Code","topics":6,"href":"curso/trilha5/modulo-5-1.html"},{"id":"5-2","title":"Automação de Scripts","topics":6,"href":"curso/trilha5/modulo-5-2.html"},{"id":"5-3","title":"FastAPI e Web Services","topics":6,"href":"curso/trilha5/modulo-5-3.html"},{"id":"5-4","title":"Testing Automatizado","topics":6,"href":"curso/trilha5/modulo-5-4.html"},{"id":"5-5","title":"Deploy e Infraestrutura","topics":6,"href":"curso/trilha5/modulo-5-5.html"},{"id":"5-6","title":"Ship Your Product","topics":6,"href":"curso/trilha5/modulo-5-6.html"}]}]}
+</script>
+  <style>
+    body{font-family:'Inter',sans-serif}.dark body{background-color:#111827}[id^="topico-"],[id^="modulo-"]{scroll-margin-top:5rem}.termo{border-bottom:1px dashed #34d399;cursor:help;font-weight:600;color:#6ee7b7}html:not(.dark) .termo{color:#047857;border-color:#059669}.copybox pre{white-space:pre-wrap;word-break:break-word}
+    html:not(.dark) body{background-color:#f8fafc}html:not(.dark) .bg-dark-900{background-color:#fff}html:not(.dark) .bg-dark-800{background-color:#f9fafb}html:not(.dark) .bg-dark-700{background-color:#f3f4f6}html:not(.dark) .bg-dark-600{background-color:#e5e7eb}html:not(.dark) .text-neutral-100{color:#111827}html:not(.dark) .text-neutral-300{color:#4b5563}html:not(.dark) .text-neutral-400{color:#6b7280}html:not(.dark) .text-neutral-500{color:#9ca3af}html:not(.dark) .border-dark-600{border-color:#d1d5db}html:not(.dark) .border-dark-700{border-color:#e5e7eb}html:not(.dark) .text-emerald-400{color:#059669}html:not(.dark) .bg-emerald-500\/20{background-color:rgba(5,150,105,0.12)}html:not(.dark) .bg-emerald-500\/10{background-color:rgba(5,150,105,0.08)}html:not(.dark) .bg-emerald-900\/20{background-color:rgba(5,150,105,0.08)}html:not(.dark) .border-emerald-500\/30{border-color:rgba(5,150,105,0.25)}html:not(.dark) .hover\:bg-emerald-500\/30:hover{background-color:rgba(5,150,105,0.18)}html:not(.dark) .hover\:text-emerald-400:hover{color:#059669}html:not(.dark) [class*="bg-gradient-to"]{background-image:none!important}html:not(.dark) .text-primary{color:#a16207}html:not(.dark) .bg-primary\/10{background-color:rgba(161,98,7,0.08)}html:not(.dark) .border-primary\/30{border-color:rgba(161,98,7,0.25)}html:not(.dark) .text-sky-400{color:#0369a1}html:not(.dark) .text-yellow-400{color:#a16207}html:not(.dark) .hover\:text-sky-300:hover{color:#0284c7}html:not(.dark) .text-red-400{color:#b91c1c}html:not(.dark) .text-blue-400{color:#2563eb}html:not(.dark) .bg-blue-900\/20{background-color:rgba(37,99,235,0.08)}html:not(.dark) .border-blue-500\/30{border-color:rgba(37,99,235,0.25)}html:not(.dark) .bg-red-900\/20{background-color:rgba(185,28,28,0.07)}html:not(.dark) .border-red-500\/30{border-color:rgba(185,28,28,0.25)}html:not(.dark) .bg-dark-900\/95{background-color:rgba(255,255,255,0.95)}
+    .dark .border-dark-600{border-color:#374151}.dark .divide-dark-600>:not([hidden])~:not([hidden]){border-color:#374151}html:not(.dark) svg[role="img"]{filter:saturate(0.82) brightness(0.96)}
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+  <a href="#conteudo" class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:top-2 focus:left-2 focus:px-4 focus:py-2 focus:bg-dark-800 focus:text-emerald-400 focus:rounded-lg">Pular para o conteudo</a>
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8"><div class="flex justify-between items-center h-14"><div class="flex items-center space-x-4"><a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300"><span class="text-2xl">🤖</span><span class="font-bold text-lg hidden sm:inline">Claude Code</span></a><span class="text-neutral-600">|</span><a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a></div><div class="flex items-center space-x-1 sm:space-x-2"><a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-emerald-400 bg-emerald-500/10"><span class="sm:hidden">T1</span><span class="hidden sm:inline">CLI</span></a><a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Modos</span></a><a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors"><span class="sm:hidden">T3</span><span class="hidden sm:inline">MCP</span></a><a href="../trilha4/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors"><span class="sm:hidden">T4</span><span class="hidden sm:inline">Agentes</span></a><a href="../trilha5/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-teal-400 hover:bg-teal-500/10 transition-colors"><span class="sm:hidden">T5</span><span class="hidden sm:inline">Python</span></a><button type="button" data-inema-journey-open class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm text-neutral-300 hover:text-neutral-100 hover:bg-dark-700 transition-colors ml-1"><span aria-hidden="true">◷</span><span>Minha jornada</span><span class="inema-journey-badge hidden" aria-hidden="true"></span></button><button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-1" aria-label="Alternar tema"><svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg><svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg></button></div></div></div></nav>
+
+  <nav class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-4" aria-label="Breadcrumb"><div class="flex items-center space-x-2 text-sm text-neutral-400"><a href="../../index.html" class="hover:text-emerald-400">Inicio</a><span>/</span><a href="index.html" class="hover:text-emerald-400">Trilha 1</a><span>/</span><span class="text-emerald-400">Modulo 1.4</span></div></nav>
+
+  <header class="bg-gradient-to-br from-emerald-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <span class="inline-block px-3 py-1 bg-emerald-500/20 text-emerald-400 text-xs font-semibold rounded-full mb-4">MODULO 1.4</span>
+    <h1 class="text-3xl sm:text-4xl font-bold mb-4">⚙️ Configuração Avançada</h1>
+    <p class="text-lg text-neutral-400 max-w-3xl">settings.json, .claudeignore, permissões, variaveis de ambiente e providers. O controle fino do Claude Code.</p>
+    <div class="grid grid-cols-4 gap-4 mt-8 max-w-2xl">
+      <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">6</div><div class="text-xs text-neutral-400">Topicos</div></div>
+      <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">~40</div><div class="text-xs text-neutral-400">Minutos</div></div>
+      <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">1.1</div><div class="text-xs text-neutral-400">Pre-req</div></div>
+      <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-emerald-400">Pratico</div><div class="text-xs text-neutral-400">Tipo</div></div>
+    </div>
+    <div class="mt-6 max-w-2xl"><div data-inema-meter="modulo:1-4" class="inema-meter flex items-center gap-3" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-label="Progresso do modulo 1.4"><span class="text-sm text-neutral-400">Progresso:</span><span class="inema-meter-pct text-emerald-400 font-bold text-sm">0%</span><span class="inema-meter-count text-xs text-neutral-500">0 de 6</span></div></div>
+  </div></header>
+
+  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12"><div class="lg:grid lg:grid-cols-[230px_1fr] lg:gap-10">
+    <nav data-inema-toc aria-label="Indice" class="hidden lg:block sticky top-24 self-start">
+      <p class="text-sm text-neutral-400 mb-3">Seção <span class="inema-toc-pos">1</span> de <span class="inema-toc-total">6</span></p>
+      <ul class="space-y-1 text-sm">
+          <li><a href="#topico-1" class="inema-toc-link block px-3 py-1.5 rounded-lg text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10">1. settings.json</a></li>
+          <li><a href="#topico-2" class="inema-toc-link block px-3 py-1.5 rounded-lg text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10">2. .claudeignore</a></li>
+          <li><a href="#topico-3" class="inema-toc-link block px-3 py-1.5 rounded-lg text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10">3. Permissões e allowedTools</a></li>
+          <li><a href="#topico-4" class="inema-toc-link block px-3 py-1.5 rounded-lg text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10">4. Variaveis de ambiente</a></li>
+          <li><a href="#topico-5" class="inema-toc-link block px-3 py-1.5 rounded-lg text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10">5. Perfis de projeto</a></li>
+          <li><a href="#topico-6" class="inema-toc-link block px-3 py-1.5 rounded-lg text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10">6. Model override e providers</a></li>
+      </ul>
+    </nav>
+
+    <main id="conteudo" class="inema-prose min-w-0">
+
+        <!-- TOPICO 1 -->
+        <section id="topico-1" data-inema-topic="modulo-1-4#topico-1" class="mb-16">
+          <div class="flex items-center justify-between gap-4 mb-6"><div class="flex items-center space-x-4"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl flex-shrink-0">1</span><h2 class="text-2xl font-bold">📋 settings.json — anatomia e localização</h2></div><button type="button" data-inema-doubt-toggle aria-pressed="false" title="Marcar duvida" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-dark-700 border border-dark-600 text-neutral-300 hover:bg-dark-600 transition-colors text-sm flex-shrink-0"><span aria-hidden="true">?</span><span class="hidden sm:inline">Tenho duvida</span></button></div>
+
+          <div class="bg-primary/10 border border-primary/30 rounded-xl p-5 mb-6"><p class="text-neutral-200"><strong class="text-primary">🧠 Imagine assim:</strong> settings.json e o arquivo de configuração tecnica do Claude Code. Se CLAUDE.md e o "o que fazer", settings.json e o "como funcionar". Ele controla permissões, ferramentas e comportamento do sistema.</p></div>
+
+        <p data-inema-block="m14-t1-p1" class="text-neutral-300 mb-4 leading-relaxed">O <span class="termo" title="Arquivo JSON de configuração do Claude Code">settings.json</span> existe em dois niveis: <strong class="text-emerald-400">~/.claude/settings.json</strong> (global) e <strong class="text-emerald-400">.claude/settings.json</strong> (por projeto, dentro do repo). O global define defaults pessoais; o local refina para o projeto especifico.</p>
+        <p data-inema-block="m14-t1-p2" class="text-neutral-300 mb-4 leading-relaxed">A estrutura e JSON puro com chaves como <code>allowedTools</code>, <code>permissions</code>, <code>model</code> e <code>env</code>. Quando ambos existem, o local faz merge com o global, e chaves locais prevalecem.</p>
+
+        <div class="copybox bg-dark-900 border border-emerald-500/30 rounded-xl overflow-hidden mb-6">
+          <div class="flex items-center justify-between px-4 py-2 bg-dark-800 border-b border-dark-600"><span class="text-xs text-emerald-400 font-mono">localizações do settings.json</span><button type="button" onclick="copyBox(this)" class="text-xs px-2 py-1 rounded bg-emerald-500/20 text-emerald-400 hover:bg-emerald-500/30 transition-colors">copiar</button></div>
+          <pre class="p-4 text-sm text-neutral-200 font-mono leading-relaxed">~/.claude/settings.json       ← global (seu usuario)
+.claude/settings.json         ← projeto (commitavel no git)
+.claude/settings.local.json   ← projeto local (NÃO commitar)</pre>
+        </div>
+
+          <div class="bg-dark-800/60 border-l-4 border-emerald-500 rounded-r-lg p-4 mb-6"><p class="text-sm text-neutral-300"><strong class="text-emerald-400">Em 1 frase:</strong> settings.json (global e local) controla como o Claude Code funciona tecnicamente.</p></div>
+          <div class="flex justify-start mt-6"><button type="button" data-inema-read-toggle aria-pressed="false" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-emerald-500/20 border border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/30 transition-colors"><span class="inema-read-icon" aria-hidden="true">○</span><span class="inema-read-label">Marcar como lido</span></button></div>
+        </section>
+        <!-- TOPICO 2 -->
+        <section id="topico-2" data-inema-topic="modulo-1-4#topico-2" class="mb-16">
+          <div class="flex items-center justify-between gap-4 mb-6"><div class="flex items-center space-x-4"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl flex-shrink-0">2</span><h2 class="text-2xl font-bold">🚫 .claudeignore — o que esconder</h2></div><button type="button" data-inema-doubt-toggle aria-pressed="false" title="Marcar duvida" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-dark-700 border border-dark-600 text-neutral-300 hover:bg-dark-600 transition-colors text-sm flex-shrink-0"><span aria-hidden="true">?</span><span class="hidden sm:inline">Tenho duvida</span></button></div>
+
+          <div class="bg-primary/10 border border-primary/30 rounded-xl p-5 mb-6"><p class="text-neutral-200"><strong class="text-primary">🧠 Imagine assim:</strong> assim como .gitignore diz ao git o que nao versionar, .claudeignore diz ao Claude Code o que nao ler. Protege secrets, reduz ruido e acelera o agente.</p></div>
+
+        <p data-inema-block="m14-t2-p1" class="text-neutral-300 mb-4 leading-relaxed">O arquivo <strong class="text-emerald-400">.claudeignore</strong> na raiz do projeto usa a mesma sintaxe glob do .gitignore. Tudo que estiver listado ali sera invisivel para o Claude Code: ele nao vai ler, indexar nem referenciar esses arquivos.</p>
+        <p data-inema-block="m14-t2-p2" class="text-neutral-300 mb-4 leading-relaxed">Padrões recomendados: <code>.env*</code> (secrets), <code>node_modules/</code> (dependências), <code>dist/</code> e <code>build/</code> (artefatos), arquivos binarios grandes, e pastas de vendor. Quanto menos lixo o Claude Code vê, mais rapido e preciso ele trabalha.</p>
+
+        <div class="copybox bg-dark-900 border border-emerald-500/30 rounded-xl overflow-hidden mb-6">
+          <div class="flex items-center justify-between px-4 py-2 bg-dark-800 border-b border-dark-600"><span class="text-xs text-emerald-400 font-mono">.claudeignore recomendado</span><button type="button" onclick="copyBox(this)" class="text-xs px-2 py-1 rounded bg-emerald-500/20 text-emerald-400 hover:bg-emerald-500/30 transition-colors">copiar</button></div>
+          <pre class="p-4 text-sm text-neutral-200 font-mono leading-relaxed"># Secrets
+.env*
+*.pem
+credentials*.json
+
+# Dependências e build
+node_modules/
+dist/
+build/
+.next/
+
+# Binários e media
+*.mp4
+*.zip
+*.wasm</pre>
+        </div>
+
+          <div class="bg-dark-800/60 border-l-4 border-emerald-500 rounded-r-lg p-4 mb-6"><p class="text-sm text-neutral-300"><strong class="text-emerald-400">Em 1 frase:</strong> .claudeignore = .gitignore para o agente; protege secrets e reduz ruido.</p></div>
+          <div class="flex justify-start mt-6"><button type="button" data-inema-read-toggle aria-pressed="false" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-emerald-500/20 border border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/30 transition-colors"><span class="inema-read-icon" aria-hidden="true">○</span><span class="inema-read-label">Marcar como lido</span></button></div>
+        </section>
+        <!-- TOPICO 3 -->
+        <section id="topico-3" data-inema-topic="modulo-1-4#topico-3" class="mb-16">
+          <div class="flex items-center justify-between gap-4 mb-6"><div class="flex items-center space-x-4"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl flex-shrink-0">3</span><h2 class="text-2xl font-bold">🔐 Permissões e allowedTools</h2></div><button type="button" data-inema-doubt-toggle aria-pressed="false" title="Marcar duvida" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-dark-700 border border-dark-600 text-neutral-300 hover:bg-dark-600 transition-colors text-sm flex-shrink-0"><span aria-hidden="true">?</span><span class="hidden sm:inline">Tenho duvida</span></button></div>
+
+          <div class="bg-primary/10 border border-primary/30 rounded-xl p-5 mb-6"><p class="text-neutral-200"><strong class="text-primary">🧠 Imagine assim:</strong> permissões controlam o que o Claude Code pode fazer sem pedir confirmação. Voce decide o equilibrio entre segurança (pedir permissão pra tudo) e velocidade (auto-aprovar operações seguras).</p></div>
+
+        <p data-inema-block="m14-t3-p1" class="text-neutral-300 mb-4 leading-relaxed">Por padrao, o Claude Code pede permissão antes de executar operações potencialmente destrutivas: editar arquivos, rodar comandos bash, etc. Voce pode configurar <strong class="text-emerald-400">allowedTools</strong> no settings.json para auto-aprovar ferramentas especificas.</p>
+        <p data-inema-block="m14-t3-p2" class="text-neutral-300 mb-4 leading-relaxed">Exemplo pratico: se voce confia que o Claude Code pode rodar <code>npm test</code> e <code>npm run lint</code> sem perguntar, adicione essas ferramentas em allowedTools. Isso acelera drasticamente workflows iterativos onde o agente precisa rodar testes repetidamente.</p>
+
+        <div class="copybox bg-dark-900 border border-emerald-500/30 rounded-xl overflow-hidden mb-6">
+          <div class="flex items-center justify-between px-4 py-2 bg-dark-800 border-b border-dark-600"><span class="text-xs text-emerald-400 font-mono">exemplo de allowedTools</span><button type="button" onclick="copyBox(this)" class="text-xs px-2 py-1 rounded bg-emerald-500/20 text-emerald-400 hover:bg-emerald-500/30 transition-colors">copiar</button></div>
+          <pre class="p-4 text-sm text-neutral-200 font-mono leading-relaxed">{
+  "permissions": {
+    "allowedTools": [
+      "Read",
+      "Glob",
+      "Grep",
+      "Bash(npm test)",
+      "Bash(npm run lint)",
+      "Bash(git status)",
+      "Bash(git diff)"
+    ]
+  }
+}</pre>
+        </div>
+
+          <div class="bg-dark-800/60 border-l-4 border-emerald-500 rounded-r-lg p-4 mb-6"><p class="text-sm text-neutral-300"><strong class="text-emerald-400">Em 1 frase:</strong> allowedTools controla o que roda automaticamente vs o que pede permissão.</p></div>
+          <div class="flex justify-start mt-6"><button type="button" data-inema-read-toggle aria-pressed="false" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-emerald-500/20 border border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/30 transition-colors"><span class="inema-read-icon" aria-hidden="true">○</span><span class="inema-read-label">Marcar como lido</span></button></div>
+        </section>
+        <!-- TOPICO 4 -->
+        <section id="topico-4" data-inema-topic="modulo-1-4#topico-4" class="mb-16">
+          <div class="flex items-center justify-between gap-4 mb-6"><div class="flex items-center space-x-4"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl flex-shrink-0">4</span><h2 class="text-2xl font-bold">🌍 Variaveis de ambiente</h2></div><button type="button" data-inema-doubt-toggle aria-pressed="false" title="Marcar duvida" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-dark-700 border border-dark-600 text-neutral-300 hover:bg-dark-600 transition-colors text-sm flex-shrink-0"><span aria-hidden="true">?</span><span class="hidden sm:inline">Tenho duvida</span></button></div>
+
+          <div class="bg-primary/10 border border-primary/30 rounded-xl p-5 mb-6"><p class="text-neutral-200"><strong class="text-primary">🧠 Imagine assim:</strong> variaveis de ambiente sao o jeito mais limpo de passar configuração sem tocar em arquivos. API key, modelo padrao, flags de comportamento: tudo via env vars.</p></div>
+
+        <p data-inema-block="m14-t4-p1" class="text-neutral-300 mb-4 leading-relaxed">O Claude Code reconhece diversas variaveis de ambiente. A mais importante e <code class="text-emerald-400">ANTHROPIC_API_KEY</code>, que define a chave de API quando voce nao usa login via browser. Outras uteis: <code>CLAUDE_MODEL</code> (modelo padrao), <code>CLAUDE_CODE_USE_BEDROCK</code> (usar AWS Bedrock), <code>CLAUDE_CODE_USE_VERTEX</code> (usar Google Vertex).</p>
+        <p data-inema-block="m14-t4-p2" class="text-neutral-300 mb-4 leading-relaxed">Para configurar por projeto sem commitar secrets, use um arquivo <code>.env</code> local (e adicione <code>.env*</code> no .claudeignore). Ou exporte as variaveis no seu <code>.bashrc</code>/<code>.zshrc</code> para que valham globalmente.</p>
+
+        <div class="bg-blue-900/20 border border-blue-500/30 rounded-xl p-5 mb-6">
+          <h3 class="font-semibold text-blue-400 mb-2">💡 Nunca commite API keys</h3>
+          <p class="text-neutral-300 text-sm">Use .env local + .claudeignore. Ou melhor: use o login via browser (claude sem nenhuma env var) e deixe a autenticação com a Anthropic. Assim nao existe key para vazar.</p>
+        </div>
+
+          <div class="bg-dark-800/60 border-l-4 border-emerald-500 rounded-r-lg p-4 mb-6"><p class="text-sm text-neutral-300"><strong class="text-emerald-400">Em 1 frase:</strong> ANTHROPIC_API_KEY, CLAUDE_MODEL e outras env vars configuram sem tocar em arquivos.</p></div>
+          <div class="flex justify-start mt-6"><button type="button" data-inema-read-toggle aria-pressed="false" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-emerald-500/20 border border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/30 transition-colors"><span class="inema-read-icon" aria-hidden="true">○</span><span class="inema-read-label">Marcar como lido</span></button></div>
+        </section>
+        <!-- TOPICO 5 -->
+        <section id="topico-5" data-inema-topic="modulo-1-4#topico-5" class="mb-16">
+          <div class="flex items-center justify-between gap-4 mb-6"><div class="flex items-center space-x-4"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl flex-shrink-0">5</span><h2 class="text-2xl font-bold">👤 Perfis de projeto</h2></div><button type="button" data-inema-doubt-toggle aria-pressed="false" title="Marcar duvida" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-dark-700 border border-dark-600 text-neutral-300 hover:bg-dark-600 transition-colors text-sm flex-shrink-0"><span aria-hidden="true">?</span><span class="hidden sm:inline">Tenho duvida</span></button></div>
+
+          <div class="bg-primary/10 border border-primary/30 rounded-xl p-5 mb-6"><p class="text-neutral-200"><strong class="text-primary">🧠 Imagine assim:</strong> projetos diferentes tem necessidades diferentes. Um projeto pessoal pode auto-aprovar tudo. Um projeto corporativo pode exigir confirmação para cada operação. Settings local permite isso.</p></div>
+
+        <p data-inema-block="m14-t5-p1" class="text-neutral-300 mb-4 leading-relaxed">O settings.json por projeto (<code>.claude/settings.json</code>) permite que cada repositorio tenha suas proprias regras. Voce pode commitar esse arquivo no git para que toda a equipe use as mesmas configurações do Claude Code.</p>
+        <p data-inema-block="m14-t5-p2" class="text-neutral-300 mb-4 leading-relaxed">Ja o <code>.claude/settings.local.json</code> e para overrides pessoais que nao devem ser compartilhados (como allowedTools mais permissivos para quem ja conhece o projeto). Ele nunca deve ir pro git.</p>
+
+
+          <div class="bg-dark-800/60 border-l-4 border-emerald-500 rounded-r-lg p-4 mb-6"><p class="text-sm text-neutral-300"><strong class="text-emerald-400">Em 1 frase:</strong> settings.json por projeto + settings.local.json pessoal = configuração por contexto.</p></div>
+          <div class="flex justify-start mt-6"><button type="button" data-inema-read-toggle aria-pressed="false" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-emerald-500/20 border border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/30 transition-colors"><span class="inema-read-icon" aria-hidden="true">○</span><span class="inema-read-label">Marcar como lido</span></button></div>
+        </section>
+        <!-- TOPICO 6 -->
+        <section id="topico-6" data-inema-topic="modulo-1-4#topico-6" class="mb-16">
+          <div class="flex items-center justify-between gap-4 mb-6"><div class="flex items-center space-x-4"><span class="flex items-center justify-center w-12 h-12 rounded-full bg-emerald-500/20 text-emerald-400 font-bold text-xl flex-shrink-0">6</span><h2 class="text-2xl font-bold">🔀 Model override e providers</h2></div><button type="button" data-inema-doubt-toggle aria-pressed="false" title="Marcar duvida" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-lg bg-dark-700 border border-dark-600 text-neutral-300 hover:bg-dark-600 transition-colors text-sm flex-shrink-0"><span aria-hidden="true">?</span><span class="hidden sm:inline">Tenho duvida</span></button></div>
+
+          <div class="bg-primary/10 border border-primary/30 rounded-xl p-5 mb-6"><p class="text-neutral-200"><strong class="text-primary">🧠 Imagine assim:</strong> voce nao esta preso a um unico modelo. O Claude Code suporta trocar de modelo por sessão, por comando, e ate usar providers alternativos como AWS Bedrock e Google Vertex.</p></div>
+
+        <p data-inema-block="m14-t6-p1" class="text-neutral-300 mb-4 leading-relaxed">Trocar de modelo e simples: use <code class="text-emerald-400">--model</code> na linha de comando, <code class="text-emerald-400">/model</code> dentro da sessão, ou <code>CLAUDE_MODEL</code> como variavel de ambiente. Os modelos disponiveis sao os da familia Claude: Opus (mais capaz), Sonnet (equilibrio), Haiku (rapido e barato).</p>
+        <p data-inema-block="m14-t6-p2" class="text-neutral-300 mb-4 leading-relaxed">Para uso corporativo, o Claude Code suporta <strong class="text-emerald-400">AWS Bedrock</strong> e <strong class="text-emerald-400">Google Vertex AI</strong> como providers. Isso permite usar o Claude Code com as credenciais e compliance da sua empresa, sem passar pela API direta da Anthropic.</p>
+
+        <div class="copybox bg-dark-900 border border-emerald-500/30 rounded-xl overflow-hidden mb-6">
+          <div class="flex items-center justify-between px-4 py-2 bg-dark-800 border-b border-dark-600"><span class="text-xs text-emerald-400 font-mono">trocando modelo e provider</span><button type="button" onclick="copyBox(this)" class="text-xs px-2 py-1 rounded bg-emerald-500/20 text-emerald-400 hover:bg-emerald-500/30 transition-colors">copiar</button></div>
+          <pre class="p-4 text-sm text-neutral-200 font-mono leading-relaxed"># por comando
+claude --model opus
+
+# na sessão interativa
+/model sonnet
+
+# via env var
+export CLAUDE_MODEL=opus
+
+# usando Bedrock
+export CLAUDE_CODE_USE_BEDROCK=1
+
+# usando Vertex AI
+export CLAUDE_CODE_USE_VERTEX=1</pre>
+        </div>
+
+          <div class="bg-dark-800/60 border-l-4 border-emerald-500 rounded-r-lg p-4 mb-6"><p class="text-sm text-neutral-300"><strong class="text-emerald-400">Em 1 frase:</strong> use --model, /model ou env vars para trocar modelo; Bedrock e Vertex para uso corporativo.</p></div>
+          <div class="flex justify-start mt-6"><button type="button" data-inema-read-toggle aria-pressed="false" class="inline-flex items-center gap-2 px-4 py-2 rounded-lg bg-emerald-500/20 border border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/30 transition-colors"><span class="inema-read-icon" aria-hidden="true">○</span><span class="inema-read-label">Marcar como lido</span></button></div>
+        </section>
+
+      <!-- RESUMO -->
+      <section class="mb-12">
+        <div class="bg-gradient-to-br from-emerald-900/40 via-dark-800 to-dark-800 rounded-xl border border-emerald-500/30 p-8">
+          <h2 class="text-2xl font-bold mb-6 flex items-center"><span class="mr-3">🧾</span> Resumo do Modulo</h2>
+          <div class="space-y-4 mb-8">
+            <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">settings.json</strong><span class="text-neutral-400"> — global e local controlam comportamento tecnico do Claude Code.</span></div></div>
+            <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">.claudeignore</strong><span class="text-neutral-400"> — protege secrets e reduz ruido, mesma sintaxe do .gitignore.</span></div></div>
+            <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">allowedTools</strong><span class="text-neutral-400"> — auto-aprova operações seguras para acelerar o workflow.</span></div></div>
+            <div class="flex items-start space-x-3"><span class="text-emerald-400 mt-1">✓</span><div><strong class="text-white">Providers</strong><span class="text-neutral-400"> — Bedrock e Vertex AI para uso corporativo.</span></div></div>
+          </div>
+          <div class="bg-dark-800/50 rounded-lg p-4 mb-8"><h3 class="font-semibold text-emerald-400 mb-2">Proximo modulo:</h3><p class="text-neutral-300">1.5 — Memory e Contexto Persistente: como a memória funciona e como nao perder contexto.</p></div>
+          <div class="flex flex-col sm:flex-row gap-4"><a href="modulo-1-3.html" class="flex-1 text-center px-6 py-3 bg-dark-700 text-neutral-300 rounded-lg font-semibold hover:bg-dark-600 transition-colors">← Modulo Anterior</a><a href="modulo-1-5.html" class="flex-1 text-center px-6 py-3 bg-emerald-600 text-white rounded-lg font-semibold hover:bg-emerald-500 transition-colors">Proximo Modulo →</a></div>
+        </div>
+      </section>
+
+    </main>
+  </div></div>
+
+  <footer class="border-t border-dark-600 py-8 mt-16"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm"><p>Transição para o Claude Code · <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300">INEMA.CLUB</a></p></div></footer>
+  <script>
+    function toggleTopic(button){const ti=button.closest('.topic-item');if(!ti)return;const e=ti.querySelector('.topic-explanation');if(e){e.classList.toggle('active');button.setAttribute('aria-expanded',e.classList.contains('active'));}}
+    (function(){const tt=document.getElementById('theme-toggle'),di=document.getElementById('theme-toggle-dark-icon'),li=document.getElementById('theme-toggle-light-icon'),h=document.documentElement;function s(){if(h.classList.contains('dark')){li.classList.remove('hidden');di.classList.add('hidden');}else{di.classList.remove('hidden');li.classList.add('hidden');}}s();tt&&tt.addEventListener('click',function(){h.classList.toggle('dark');var d=h.classList.contains('dark');h.style.colorScheme=d?'dark':'light';try{var p=JSON.parse(localStorage.getItem('inema.prefs')||'{}');p.theme=d?'inema-dark':'claro';localStorage.setItem('inema.prefs',JSON.stringify(p));localStorage.setItem('theme',d?'dark':'light');}catch(e){}s();});})();
+    function openModal(id){var m=document.getElementById(id);if(m){m.classList.remove('hidden');document.body.style.overflow='hidden';}}
+    function closeModal(){document.querySelectorAll('.modal').forEach(function(m){m.classList.add('hidden');});document.body.style.overflow='auto';}
+    document.addEventListener('keydown',function(e){if(e.key==='Escape')closeModal();});
+    function copyBox(btn){try{var pre=btn.closest('.copybox').querySelector('pre');navigator.clipboard.writeText(pre.textContent);var o=btn.textContent;btn.textContent='copiado ✓';setTimeout(function(){btn.textContent=o;},1500);}catch(e){}}
+  </script>
+  <script src="../../assets/learn.js"></script>
+  <script>document.addEventListener('DOMContentLoaded',function(){if(window.INEMA&&typeof INEMA.init==='function')INEMA.init();});</script>
+</body>
+</html>

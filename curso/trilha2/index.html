@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="inema-course" content="claude-code">
+  <title>Trilha 2 · Plan e Loop Modes | Claude Code</title>
+  <script>
+  (function () {
+    try {
+      var html = document.documentElement;
+      var DEF = { theme: 'inema-dark', font: 'inter', fontScale: 100, lineWidth: 68, leading: 1.7, accent: 'blue' };
+      function clone(o){var r={};for(var x in o)r[x]=o[x];return r;}
+      var p = clone(DEF);
+      try {
+        var raw = localStorage.getItem('inema.prefs');
+        if (raw) { var parsed = JSON.parse(raw); if (parsed && typeof parsed==='object'){ for (var k in DEF) if (parsed[k]!=null) p[k]=parsed[k]; } }
+        else { var legacy = localStorage.getItem('theme'); if (legacy==='light') p.theme='claro'; else if (legacy==='dark') p.theme='inema-dark'; }
+      } catch (e) { p = clone(DEF); }
+      var THEMES = { 'inema-dark':{dark:true,attr:null,cs:'dark'},'claro':{dark:false,attr:null,cs:'light'},'sepia':{dark:false,attr:'sepia',cs:'light'},'foco':{dark:null,attr:'foco',cs:null},'contraste':{dark:true,attr:'contraste',cs:'dark'} };
+      var t = THEMES[p.theme] || THEMES['inema-dark'];
+      if (t.dark===true) html.classList.add('dark'); else if (t.dark===false) html.classList.remove('dark');
+      if (t.attr) html.setAttribute('data-theme', t.attr); else html.removeAttribute('data-theme');
+      html.style.colorScheme = (t.cs ? t.cs : (html.classList.contains('dark')?'dark':'light'));
+      html.setAttribute('data-font', p.font||'inter'); html.setAttribute('data-accent', p.accent||'blue');
+      var s = html.style, scale=(+p.fontScale||100);
+      s.setProperty('--inema-font-scale',(scale/100).toString()); s.setProperty('font-size',scale+'%');
+      s.setProperty('--measure',(+p.lineWidth||68)+'ch'); s.setProperty('--lh-body',(+p.leading||1.7).toString());
+    } catch (err) { try { document.documentElement.classList.add('dark'); document.documentElement.style.colorScheme='dark'; } catch(e){} }
+  })();
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class', theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } } }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/learn.css">
+  <script type="application/json" data-inema-manifest>
+{
+  "course": "claude-code",
+  "tracks": [
+    { "n": "1", "title": "CLI e Configuração", "modules": [
+      { "id": "1-1", "title": "Instalação e Primeiro Comando", "topics": 6, "href": "curso/trilha1/modulo-1-1.html" },
+      { "id": "1-2", "title": "Navegando o CLI como um Pro", "topics": 6, "href": "curso/trilha1/modulo-1-2.html" },
+      { "id": "1-3", "title": "CLAUDE.md — O Cérebro do Projeto", "topics": 6, "href": "curso/trilha1/modulo-1-3.html" },
+      { "id": "1-4", "title": "Configuração Avançada", "topics": 6, "href": "curso/trilha1/modulo-1-4.html" },
+      { "id": "1-5", "title": "Memory e Contexto Persistente", "topics": 6, "href": "curso/trilha1/modulo-1-5.html" },
+      { "id": "1-6", "title": "Seu Workflow Pessoal", "topics": 6, "href": "curso/trilha1/modulo-1-6.html" }
+    ]},
+    { "n": "2", "title": "Plan e Loop Modes", "modules": [
+      { "id": "2-1", "title": "Plan Mode — Pense Antes de Codar", "topics": 6, "href": "curso/trilha2/modulo-2-1.html" },
+      { "id": "2-2", "title": "Planos que Funcionam", "topics": 6, "href": "curso/trilha2/modulo-2-2.html" },
+      { "id": "2-3", "title": "Loop Mode — Automação Iterativa", "topics": 6, "href": "curso/trilha2/modulo-2-3.html" },
+      { "id": "2-4", "title": "Patterns de Loop na Prática", "topics": 6, "href": "curso/trilha2/modulo-2-4.html" },
+      { "id": "2-5", "title": "Combinando Plan + Loop", "topics": 6, "href": "curso/trilha2/modulo-2-5.html" },
+      { "id": "2-6", "title": "Agentic Coding — O Novo Normal", "topics": 6, "href": "curso/trilha2/modulo-2-6.html" }
+    ]},
+    { "n": "3", "title": "MCP Servers", "modules": [
+      { "id": "3-1", "title": "O que são MCP Servers", "topics": 6, "href": "curso/trilha3/modulo-3-1.html" },
+      { "id": "3-2", "title": "Seus Primeiros MCPs", "topics": 6, "href": "curso/trilha3/modulo-3-2.html" },
+      { "id": "3-3", "title": "MCPs de Produtividade", "topics": 6, "href": "curso/trilha3/modulo-3-3.html" },
+      { "id": "3-4", "title": "MCPs de Database e APIs", "topics": 6, "href": "curso/trilha3/modulo-3-4.html" },
+      { "id": "3-5", "title": "Criando seu Próprio MCP Server", "topics": 6, "href": "curso/trilha3/modulo-3-5.html" },
+      { "id": "3-6", "title": "Ecossistema e Marketplace", "topics": 6, "href": "curso/trilha3/modulo-3-6.html" }
+    ]},
+    { "n": "4", "title": "Subagentes e Git", "modules": [
+      { "id": "4-1", "title": "Subagentes — Conceitos", "topics": 6, "href": "curso/trilha4/modulo-4-1.html" },
+      { "id": "4-2", "title": "Paralelismo Real", "topics": 6, "href": "curso/trilha4/modulo-4-2.html" },
+      { "id": "4-3", "title": "Patterns de Multi-Agent", "topics": 6, "href": "curso/trilha4/modulo-4-3.html" },
+      { "id": "4-4", "title": "Git com IA — Versionamento", "topics": 6, "href": "curso/trilha4/modulo-4-4.html" },
+      { "id": "4-5", "title": "Pull Requests e Code Review", "topics": 6, "href": "curso/trilha4/modulo-4-5.html" },
+      { "id": "4-6", "title": "CI/CD e GitHub Actions", "topics": 6, "href": "curso/trilha4/modulo-4-6.html" }
+    ]},
+    { "n": "5", "title": "Python e Ship", "modules": [
+      { "id": "5-1", "title": "Python + Claude Code", "topics": 6, "href": "curso/trilha5/modulo-5-1.html" },
+      { "id": "5-2", "title": "Automação de Scripts", "topics": 6, "href": "curso/trilha5/modulo-5-2.html" },
+      { "id": "5-3", "title": "FastAPI e Web Services", "topics": 6, "href": "curso/trilha5/modulo-5-3.html" },
+      { "id": "5-4", "title": "Testing Automatizado", "topics": 6, "href": "curso/trilha5/modulo-5-4.html" },
+      { "id": "5-5", "title": "Deploy e Infraestrutura", "topics": 6, "href": "curso/trilha5/modulo-5-5.html" },
+      { "id": "5-6", "title": "Ship Your Product", "topics": 6, "href": "curso/trilha5/modulo-5-6.html" }
+    ]}
+  ]
+}
+</script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    .topic-explanation { display: none; }
+    .topic-explanation.active { display: block; }
+    [id^="topico-"], [id^="modulo-"] { scroll-margin-top: 5rem; }
+
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .bg-blue-500\/20 { background-color: rgba(37,99,235,0.12); }
+    html:not(.dark) .bg-blue-500\/10 { background-color: rgba(37,99,235,0.08); }
+    html:not(.dark) .bg-blue-900\/20 { background-color: rgba(37,99,235,0.08); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(37,99,235,0.25); }
+    html:not(.dark) .hover\:bg-blue-500\/30:hover { background-color: rgba(37,99,235,0.18); }
+    html:not(.dark) .hover\:text-blue-400:hover { color: #2563eb; }
+    html:not(.dark) .group:hover .group-hover\:text-blue-400 { color: #2563eb; }
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161,98,7,0.08); }
+    html:not(.dark) .border-primary\/30 { border-color: rgba(161,98,7,0.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .text-emerald-400 { color: #059669; }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) .bg-red-900\/20 { background-color: rgba(185,28,28,0.07); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(185,28,28,0.25); }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255,255,255,0.95); }
+
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+    html:not(.dark) svg[role="img"] { filter: saturate(0.82) brightness(0.96); }
+
+    @keyframes wf-pulse { 0%,100% { opacity:.55 } 50% { opacity:1 } }
+    @media (prefers-reduced-motion: no-preference) {
+      .wf-a { animation: wf-pulse 2.6s ease-in-out infinite; }
+      .wf-a:nth-child(2){animation-delay:.25s} .wf-a:nth-child(3){animation-delay:.5s}
+      .wf-a:nth-child(4){animation-delay:.75s} .wf-a:nth-child(5){animation-delay:1s}
+    }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+  <a href="#conteudo" class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:top-2 focus:left-2 focus:px-4 focus:py-2 focus:bg-dark-800 focus:text-blue-400 focus:rounded-lg">Pular para o conteudo</a>
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300"><span class="text-2xl">🤖</span><span class="font-bold text-lg hidden sm:inline">Claude Code</span></a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">CLI</span></a>
+          <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-blue-400 bg-blue-500/10"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Modos</span></a>
+          <a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors"><span class="sm:hidden">T3</span><span class="hidden sm:inline">MCP</span></a>
+          <a href="../trilha4/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-amber-400 hover:bg-amber-500/10 transition-colors"><span class="sm:hidden">T4</span><span class="hidden sm:inline">Agentes</span></a>
+          <a href="../trilha5/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-teal-400 hover:bg-teal-500/10 transition-colors"><span class="sm:hidden">T5</span><span class="hidden sm:inline">Python</span></a>
+          <button type="button" data-inema-journey-open class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm text-neutral-300 hover:text-neutral-100 hover:bg-dark-700 transition-colors ml-1"><span aria-hidden="true">◷</span><span>Minha jornada</span><span class="inema-journey-badge hidden" aria-hidden="true"></span></button>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-1" aria-label="Alternar tema">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <header class="bg-gradient-to-br from-blue-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="inline-block px-3 py-1 bg-blue-500/20 text-blue-400 text-xs font-semibold rounded-full mb-4">TRILHA 2</span>
+      <h1 class="text-3xl sm:text-4xl font-bold mb-4">🤖 Plan e Loop Modes</h1>
+      <p class="text-lg text-neutral-400 max-w-3xl mb-6">O Claude Code tem dois modos poderosos que transformam como voce trabalha: Plan Mode para pensar antes de agir, e Loop Mode para automacao iterativa. Domine os dois e combine-os para velocidade maxima com seguranca.</p>
+      <div class="rounded-2xl border border-blue-500/30 bg-dark-900/40 p-3 sm:p-4 mb-6 overflow-hidden">
+    <svg viewBox="0 0 1000 220" class="w-full h-auto" role="img" aria-label="Diagrama: Plan Mode alimenta Loop Mode que produz resultado iterativo">
+      <defs>
+        <linearGradient id="t2h-grad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#60a5fa"/><stop offset="1" stop-color="#3b82f6"/></linearGradient>
+        <filter id="t2h-glow" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="1.8" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        <pattern id="t2h-grid" width="32" height="32" patternUnits="userSpaceOnUse"><circle cx="1.3" cy="1.3" r="1.3" fill="#3b82f6" opacity="0.12"/></pattern>
+        <marker id="t2h-ah" markerWidth="9" markerHeight="9" refX="6.5" refY="4.5" orient="auto"><path d="M0,0 L8,4.5 L0,9 L2.4,4.5 Z" fill="#60a5fa"/></marker>
+      </defs>
+      <rect x="0" y="0" width="1000" height="220" fill="url(#t2h-grid)"/>
+      <g font-family="Inter,sans-serif" font-size="13" font-weight="600">
+        <g class="wf-a"><rect x="40" y="50" width="180" height="50" rx="12" fill="#0e1622" stroke="#60a5fa" stroke-width="2"/><text x="130" y="72" text-anchor="middle" fill="#60a5fa" font-size="14">PLAN MODE</text><text x="130" y="90" text-anchor="middle" fill="#93c5fd" font-size="11">pensar e planejar</text></g>
+        <g class="wf-a"><rect x="40" y="120" width="180" height="50" rx="12" fill="#0e1622" stroke="#60a5fa" stroke-width="2"/><text x="130" y="142" text-anchor="middle" fill="#60a5fa" font-size="14">LOOP MODE</text><text x="130" y="160" text-anchor="middle" fill="#93c5fd" font-size="11">executar e iterar</text></g>
+      </g>
+      <g fill="none" stroke="#60a5fa" stroke-width="1.8" opacity="0.5">
+        <path d="M220,75 C320,75 340,110 450,110" marker-end="url(#t2h-ah)"/>
+        <path d="M220,145 C320,145 340,110 450,110" marker-end="url(#t2h-ah)"/>
+      </g>
+      <g filter="url(#t2h-glow)"><rect x="450" y="72" width="220" height="76" rx="16" fill="#0e1622" stroke="url(#t2h-grad)" stroke-width="2.5"/></g>
+      <text x="560" y="105" text-anchor="middle" fill="#60a5fa" font-family="Inter,sans-serif" font-weight="600" font-size="18">PLAN + LOOP</text>
+      <text x="560" y="126" text-anchor="middle" fill="#93c5fd" font-family="Inter,sans-serif" font-size="12">pipeline combinado</text>
+      <path d="M670,110 L790,110" fill="none" stroke="#60a5fa" stroke-width="2" marker-end="url(#t2h-ah)"/>
+      <rect x="790" y="84" width="170" height="52" rx="12" fill="#1f2937" stroke="#9ca3af" stroke-width="2"/>
+      <text x="875" y="115" text-anchor="middle" fill="#e5e7eb" font-family="Inter,sans-serif" font-weight="600" font-size="15">Resultado</text>
+    </svg>
+      </div>
+      <div class="grid grid-cols-4 gap-4 mt-2 max-w-2xl">
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">6</div><div class="text-xs text-neutral-400">Modulos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">36</div><div class="text-xs text-neutral-400">Topicos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">~4h</div><div class="text-xs text-neutral-400">Duracao</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-blue-400">Inter</div><div class="text-xs text-neutral-400">Nivel</div></div>
+      </div>
+      <div class="mt-6 max-w-2xl">
+        <div data-inema-meter="trilha:2" class="inema-meter flex items-center gap-3" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-label="Progresso da trilha 2">
+          <span class="text-sm text-neutral-400">Progresso da trilha:</span>
+          <span class="inema-meter-pct text-blue-400 font-bold text-sm">0%</span>
+          <span class="inema-meter-count text-xs text-neutral-500">0 de 36</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="conteudo" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-6">Mapa da trilha</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <a href="#modulo-2-1" class="group bg-dark-800 rounded-xl border border-dark-600 hover:border-blue-500/30 p-5 transition-all">
+          <div class="flex items-center justify-between mb-2"><span class="text-blue-400 font-bold text-sm">2.1</span><span class="text-xs text-neutral-500">~40 min</span></div>
+          <h3 class="font-semibold mb-1 group-hover:text-blue-400 transition-colors">Plan Mode — Pense Antes de Codar</h3>
+          <p class="text-xs text-neutral-400">O modo de planejamento</p>
+        </a>
+        <a href="#modulo-2-2" class="group bg-dark-800 rounded-xl border border-dark-600 hover:border-blue-500/30 p-5 transition-all">
+          <div class="flex items-center justify-between mb-2"><span class="text-blue-400 font-bold text-sm">2.2</span><span class="text-xs text-neutral-500">~45 min</span></div>
+          <h3 class="font-semibold mb-1 group-hover:text-blue-400 transition-colors">Planos que Funcionam</h3>
+          <p class="text-xs text-neutral-400">Pratica de planejamento</p>
+        </a>
+        <a href="#modulo-2-3" class="group bg-dark-800 rounded-xl border border-dark-600 hover:border-blue-500/30 p-5 transition-all">
+          <div class="flex items-center justify-between mb-2"><span class="text-blue-400 font-bold text-sm">2.3</span><span class="text-xs text-neutral-500">~40 min</span></div>
+          <h3 class="font-semibold mb-1 group-hover:text-blue-400 transition-colors">Loop Mode — Automacao Iterativa</h3>
+          <p class="text-xs text-neutral-400">Execucao autonoma</p>
+        </a>
+        <a href="#modulo-2-4" class="group bg-dark-800 rounded-xl border border-dark-600 hover:border-blue-500/30 p-5 transition-all">
+          <div class="flex items-center justify-between mb-2"><span class="text-blue-400 font-bold text-sm">2.4</span><span class="text-xs text-neutral-500">~45 min</span></div>
+          <h3 class="font-semibold mb-1 group-hover:text-blue-400 transition-colors">Patterns de Loop na Pratica</h3>
+          <p class="text-xs text-neutral-400">Receitas reais de loop</p>
+        </a>
+        <a href="#modulo-2-5" class="group bg-dark-800 rounded-xl border border-dark-600 hover:border-blue-500/30 p-5 transition-all">
+          <div class="flex items-center justify-between mb-2"><span class="text-blue-400 font-bold text-sm">2.5</span><span class="text-xs text-neutral-500">~50 min</span></div>
+          <h3 class="font-semibold mb-1 group-hover:text-blue-400 transition-colors">Combinando Plan + Loop</h3>
+          <p class="text-xs text-neutral-400">Pipeline completo</p>
+        </a>
+        <a href="#modulo-2-6" class="group bg-dark-800 rounded-xl border border-dark-600 hover:border-blue-500/30 p-5 transition-all">
+          <div class="flex items-center justify-between mb-2"><span class="text-blue-400 font-bold text-sm">2.6</span><span class="text-xs text-neutral-500">~35 min</span></div>
+          <h3 class="font-semibold mb-1 group-hover:text-blue-400 transition-colors">Agentic Coding — O Novo Normal</h3>
+          <p class="text-xs text-neutral-400">O mindset shift</p>
+        </a>
+      </div>
+    </section>
+
+    <h2 class="text-2xl font-bold mb-6">Conteudo detalhado</h2>
+
+    <div id="modulo-2-1" data-inema-module="2-1" data-inema-track="2" class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
+      <div class="p-6 border-b border-dark-600">
+        <div class="flex items-center justify-between mb-2"><span class="text-blue-400 font-bold">2.1</span><span class="text-xs text-neutral-500">~40 min</span></div>
+        <h3 class="text-2xl font-bold mb-2">Plan Mode — Pense Antes de Codar</h3>
+        <p class="text-neutral-400 text-sm">O fundamento: como e quando usar plan mode para pensar antes de executar.</p>
+      </div>
+      <div class="divide-y divide-dark-600">
+        <div class="topic-item"><button onclick="toggleTopic(this)" aria-expanded="false" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span><div><span class="font-medium">O que e plan mode</span><span class="text-neutral-500 text-sm ml-2">- Conceito base</span></div></button><div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9"><div><span class="text-blue-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Modo que faz o Claude pensar e propor um plano antes de executar qualquer acao.</p></div><div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Evita erros caros e retrabalho ao planejar primeiro.</p></div><div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Shift+Tab para ativar; plano visivel antes da execucao.</p></div></div></div></div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" aria-expanded="false" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span><div><span class="font-medium">Quando usar (e quando nao)</span><span class="text-neutral-500 text-sm ml-2">- Contexto certo</span></div></button><div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9"><div><span class="text-blue-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Criterios para decidir se plan mode compensa ou se execucao direta e mais rapida.</p></div><div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Nem toda tarefa precisa de plano; usar sem necessidade desperdiça tokens.</p></div><div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Complexidade, risco, numero de arquivos afetados.</p></div></div></div></div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" aria-expanded="false" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span><div><span class="font-medium">Anatomia de um plano</span><span class="text-neutral-500 text-sm ml-2">- Estrutura interna</span></div></button><div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9"><div><span class="text-blue-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Os componentes que formam um bom plano: objetivo, passos, dependencias, riscos.</p></div><div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Saber ler um plano te permite avaliar se ele vai funcionar antes de aprovar.</p></div><div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Steps, file list, risk assessment, order of operations.</p></div></div></div></div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" aria-expanded="false" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span><div><span class="font-medium">Approval flow — revisando e ajustando</span><span class="text-neutral-500 text-sm ml-2">- Controle humano</span></div></button><div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9"><div><span class="text-blue-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">O fluxo de aprovacao onde voce revisa o plano e pode ajustar antes de rodar.</p></div><div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">E o ponto de controle: voce decide se executa, modifica ou rejeita.</p></div><div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Approve, reject, refine; feedback loop antes da acao.</p></div></div></div></div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" aria-expanded="false" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span><div><span class="font-medium">Iterando no plano antes de executar</span><span class="text-neutral-500 text-sm ml-2">- Refinamento</span></div></button><div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9"><div><span class="text-blue-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Tecnica de pedir ajustes no plano multiplas vezes ate ele ficar ideal.</p></div><div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Um plano refinado economiza horas de correcao depois.</p></div><div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Multi-turn planning; plano como draft vivo.</p></div></div></div></div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" aria-expanded="false" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span><div><span class="font-medium">Anti-patterns comuns</span><span class="text-neutral-500 text-sm ml-2">- O que evitar</span></div></button><div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9"><div><span class="text-blue-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Erros frequentes: aprovar sem ler, planejar demais, ignorar plano e executar direto.</p></div><div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Reconhecer anti-patterns te mantem no caminho produtivo.</p></div><div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Over-planning; rubber-stamp approval; plan drift.</p></div></div></div></div>
+      </div>
+      <div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+        <a href="modulo-2-1.html" class="px-4 py-2 text-sm bg-blue-600 hover:bg-blue-500 text-white rounded-lg transition-colors">Ver Completo</a>
+      </div>
+    </div>
+
+    <div id="modulo-2-2" data-inema-module="2-2" data-inema-track="2" class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
+      <div class="p-6 border-b border-dark-600">
+        <div class="flex items-center justify-between mb-2"><span class="text-blue-400 font-bold">2.2</span><span class="text-xs text-neutral-500">~45 min</span></div>
+        <h3 class="text-2xl font-bold mb-2">Planos que Funcionam</h3>
+        <p class="text-neutral-400 text-sm">Na pratica: como criar planos eficazes para features, refactors e bug fixes.</p>
+      </div>
+      <div class="divide-y divide-dark-600">
+        <div class="topic-item"><button onclick="toggleTopic(this)" aria-expanded="false" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span><div><span class="font-medium">Plano de feature nova</span><span class="text-neutral-500 text-sm ml-2">- Do zero ao deploy</span></div></button><div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9"><div><span class="text-blue-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Estrutura de plano para implementar uma funcionalidade completamente nova.</p></div><div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Features novas sao onde plan mode mais brilha: evita arquitetura errada.</p></div><div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Scoping; interface first; test plan.</p></div></div></div></div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" aria-expanded="false" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span><div><span class="font-medium">Plano de refactor</span><span class="text-neutral-500 text-sm ml-2">- Mudar sem quebrar</span></div></button><div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9"><div><span class="text-blue-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Como planejar uma refatoracao segura com cobertura de testes e rollback.</p></div><div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Refactors sem plano viram bolas de neve; com plano, sao cirurgicos.</p></div><div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Strangler pattern; test-first refactor; incremental steps.</p></div></div></div></div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" aria-expanded="false" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span><div><span class="font-medium">Plano de bug fix</span><span class="text-neutral-500 text-sm ml-2">- Diagnostico e correcao</span></div></button><div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9"><div><span class="text-blue-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Plano para diagnosticar a causa raiz, corrigir e validar sem regressoes.</p></div><div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Bug fixes apressados criam novos bugs; o plano disciplina o fluxo.</p></div><div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Reproduce first; root cause; regression test.</p></div></div></div></div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" aria-expanded="false" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span><div><span class="font-medium">Decomposicao de tarefas</span><span class="text-neutral-500 text-sm ml-2">- Partir o grande</span></div></button><div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9"><div><span class="text-blue-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Tecnica de quebrar uma tarefa grande em passos atomicos e independentes.</p></div><div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Tarefas atomicas sao mais faceis de verificar e reverter.</p></div><div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Atomic steps; single responsibility; verifiable output.</p></div></div></div></div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" aria-expanded="false" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span><div><span class="font-medium">Mapeando dependencias</span><span class="text-neutral-500 text-sm ml-2">- Ordem importa</span></div></button><div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9"><div><span class="text-blue-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Identificar quais passos dependem de outros para definir a ordem correta.</p></div><div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Dependencias erradas = trabalho jogado fora e conflitos.</p></div><div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">DAG de tarefas; critical path; blockers.</p></div></div></div></div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" aria-expanded="false" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span><div><span class="font-medium">Estimativa de esforco</span><span class="text-neutral-500 text-sm ml-2">- Quanto vai custar</span></div></button><div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9"><div><span class="text-blue-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Como estimar tokens, tempo e iteracoes que um plano vai consumir.</p></div><div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Permite decidir se vale rodar ou se e melhor simplificar o plano.</p></div><div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Token budget; iteration count; complexity heuristics.</p></div></div></div></div>
+      </div>
+      <div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+        <a href="modulo-2-2.html" class="px-4 py-2 text-sm bg-blue-600 hover:bg-blue-500 text-white rounded-lg transition-colors">Ver Completo</a>
+      </div>
+    </div>
+
+    <div id="modulo-2-3" data-inema-module="2-3" data-inema-track="2" class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
+      <div class="p-6 border-b border-dark-600">
+        <div class="flex items-center justify-between mb-2"><span class="text-blue-400 font-bold">2.3</span><span class="text-xs text-neutral-500">~40 min</span></div>
+        <h3 class="text-2xl font-bold mb-2">Loop Mode — Automacao Iterativa</h3>
+        <p class="text-neutral-400 text-sm">Deixe o Claude executar em loop: fix, test, fix ate passar. O fundamento do modo autonomo.</p>
+      </div>
+      <div class="divide-y divide-dark-600">
+        <div class="topic-item"><button onclick="toggleTopic(this)" aria-expanded="false" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span><div><span class="font-medium">O que e loop mode</span><span class="text-neutral-500 text-sm ml-2">- Execucao continua</span></div></button><div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9"><div><span class="text-blue-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Modo que permite ao Claude executar, verificar resultado e iterar automaticamente.</p></div><div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Automatiza o ciclo edit-test-fix que consome horas no modo manual.</p></div><div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">--dangerously-skip-permissions; auto-accept; iteration limit.</p></div></div></div></div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" aria-expanded="false" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span><div><span class="font-medium">Quando usar vs interativo</span><span class="text-neutral-500 text-sm ml-2">- Trade-offs</span></div></button><div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9"><div><span class="text-blue-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Criterios para loop mode vs modo interativo normal com aprovacao por passo.</p></div><div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Loop mode sem criterio pode gastar tokens ou fazer mudancas indesejadas.</p></div><div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Confianca no outcome; reversibilidade; custo de supervisao.</p></div></div></div></div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" aria-expanded="false" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span><div><span class="font-medium">Guardas de seguranca</span><span class="text-neutral-500 text-sm ml-2">- Limites e protecoes</span></div></button><div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9"><div><span class="text-blue-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Mecanismos para impedir que o loop cause danos: allowedTools, max turns, git worktree.</p></div><div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Seguranca e o que permite confiar no loop e sair pra tomar cafe.</p></div><div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">allowedTools; permission scopes; worktree isolation.</p></div></div></div></div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" aria-expanded="false" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span><div><span class="font-medium">Monitoramento em tempo real</span><span class="text-neutral-500 text-sm ml-2">- Acompanhar o loop</span></div></button><div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9"><div><span class="text-blue-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Ferramentas para observar o que o loop esta fazendo: logs, diff, test output.</p></div><div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Monitorar permite intervir antes de problemas se acumularem.</p></div><div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Terminal watch; git diff --stat; CI status.</p></div></div></div></div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" aria-expanded="false" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span><div><span class="font-medium">Parar no ponto certo</span><span class="text-neutral-500 text-sm ml-2">- Saber quando basta</span></div></button><div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9"><div><span class="text-blue-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Criterios de parada: testes passando, linter limpo, diff estavel.</p></div><div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Loop infinito = tokens queimados; criterio claro = eficiencia.</p></div><div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Exit conditions; convergence; diminishing returns.</p></div></div></div></div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" aria-expanded="false" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span><div><span class="font-medium">Loop mode vs background agents</span><span class="text-neutral-500 text-sm ml-2">- Comparacao</span></div></button><div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9"><div><span class="text-blue-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Diferencas entre loop mode local e agentes em background (GitHub Actions, etc).</p></div><div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Cada abordagem tem trade-offs de custo, velocidade e controle.</p></div><div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Local vs remote; latency; cost per iteration.</p></div></div></div></div>
+      </div>
+      <div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+        <a href="modulo-2-3.html" class="px-4 py-2 text-sm bg-blue-600 hover:bg-blue-500 text-white rounded-lg transition-colors">Ver Completo</a>
+      </div>
+    </div>
+
+    <div id="modulo-2-4" data-inema-module="2-4" data-inema-track="2" class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
+      <div class="p-6 border-b border-dark-600">
+        <div class="flex items-center justify-between mb-2"><span class="text-blue-400 font-bold">2.4</span><span class="text-xs text-neutral-500">~45 min</span></div>
+        <h3 class="text-2xl font-bold mb-2">Patterns de Loop na Pratica</h3>
+        <p class="text-neutral-400 text-sm">Receitas reais: loops de teste, lint, migracao, dados e docs para copiar e rodar.</p>
+      </div>
+      <div class="divide-y divide-dark-600">
+        <div class="topic-item"><button onclick="toggleTopic(this)" aria-expanded="false" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span><div><span class="font-medium">Loop de testes (fix, test, fix)</span><span class="text-neutral-500 text-sm ml-2">- O classico</span></div></button><div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9"><div><span class="text-blue-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Rodar testes, corrigir falhas, rodar de novo ate tudo passar.</p></div><div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">O pattern mais comum e mais util do loop mode.</p></div><div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">pytest/jest loop; error parsing; auto-fix.</p></div></div></div></div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" aria-expanded="false" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span><div><span class="font-medium">Loop de lint/format</span><span class="text-neutral-500 text-sm ml-2">- Codigo limpo</span></div></button><div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9"><div><span class="text-blue-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Rodar linter, corrigir warnings, re-rodar ate zero erros.</p></div><div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Limpar lint de codebase inteiro em minutos, nao horas.</p></div><div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">eslint --fix; black/ruff; iterative cleanup.</p></div></div></div></div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" aria-expanded="false" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span><div><span class="font-medium">Loop de migracao</span><span class="text-neutral-500 text-sm ml-2">- Upgrades em massa</span></div></button><div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9"><div><span class="text-blue-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Migrar APIs, dependencias ou versoes arquivo por arquivo com validacao.</p></div><div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Migracoes sao tediosas pra humanos, perfeitas pra loops.</p></div><div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">File-by-file; type-check gate; incremental commit.</p></div></div></div></div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" aria-expanded="false" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span><div><span class="font-medium">Loop de dados</span><span class="text-neutral-500 text-sm ml-2">- ETL e transformacao</span></div></button><div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9"><div><span class="text-blue-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Processar, transformar e validar datasets iterativamente.</p></div><div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Dados sujos precisam de multiplas passadas; loop faz isso sem voce.</p></div><div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Schema validation; data cleaning passes; assertion gates.</p></div></div></div></div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" aria-expanded="false" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span><div><span class="font-medium">Loop de docs</span><span class="text-neutral-500 text-sm ml-2">- Documentacao viva</span></div></button><div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9"><div><span class="text-blue-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Gerar docs, validar links, atualizar exemplos ate tudo consistente.</p></div><div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Docs desatualizados matam projetos; loop mantém sincronizado.</p></div><div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Docstring sync; link checker; example runner.</p></div></div></div></div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" aria-expanded="false" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span><div><span class="font-medium">Loop composto</span><span class="text-neutral-500 text-sm ml-2">- Multiplos criterios</span></div></button><div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9"><div><span class="text-blue-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Combinar criterios de saida: testes + lint + types + build tudo verde.</p></div><div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">O loop composto e o mais parecido com CI/CD rodando localmente.</p></div><div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Multi-gate loop; combined exit criteria; script orchestration.</p></div></div></div></div>
+      </div>
+      <div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+        <a href="modulo-2-4.html" class="px-4 py-2 text-sm bg-blue-600 hover:bg-blue-500 text-white rounded-lg transition-colors">Ver Completo</a>
+      </div>
+    </div>
+
+    <div id="modulo-2-5" data-inema-module="2-5" data-inema-track="2" class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
+      <div class="p-6 border-b border-dark-600">
+        <div class="flex items-center justify-between mb-2"><span class="text-blue-400 font-bold">2.5</span><span class="text-xs text-neutral-500">~50 min</span></div>
+        <h3 class="text-2xl font-bold mb-2">Combinando Plan + Loop</h3>
+        <p class="text-neutral-400 text-sm">O pipeline completo: planejar, executar em loop, revisar. Orquestracao avancada.</p>
+      </div>
+      <div class="divide-y divide-dark-600">
+        <div class="topic-item"><button onclick="toggleTopic(this)" aria-expanded="false" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span><div><span class="font-medium">Pipeline plan, loop, review</span><span class="text-neutral-500 text-sm ml-2">- Fluxo completo</span></div></button><div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9"><div><span class="text-blue-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">O fluxo ideal: plan mode primeiro, loop mode pra executar, review humano no fim.</p></div><div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">E o padrao de ouro para tarefas complexas com Claude Code.</p></div><div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Three-phase pipeline; handoff points; review gate.</p></div></div></div></div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" aria-expanded="false" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span><div><span class="font-medium">Handoff entre modos</span><span class="text-neutral-500 text-sm ml-2">- Transicao suave</span></div></button><div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9"><div><span class="text-blue-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Como transicionar do plano aprovado para o loop sem perder contexto.</p></div><div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Handoff mal feito faz o loop ignorar partes do plano.</p></div><div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Context preservation; explicit instructions; checkpoint.</p></div></div></div></div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" aria-expanded="false" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span><div><span class="font-medium">Escalando complexidade</span><span class="text-neutral-500 text-sm ml-2">- Projetos grandes</span></div></button><div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9"><div><span class="text-blue-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Estrategias para usar plan+loop em projetos com dezenas de arquivos.</p></div><div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Projetos grandes exigem decomposicao; sem ela, o loop se perde.</p></div><div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Phased execution; module boundaries; progressive disclosure.</p></div></div></div></div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" aria-expanded="false" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span><div><span class="font-medium">Multi-file orchestration</span><span class="text-neutral-500 text-sm ml-2">- Varios arquivos</span></div></button><div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9"><div><span class="text-blue-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Coordenar mudancas em multiplos arquivos mantendo consistencia.</p></div><div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">A maioria das features toca varios arquivos; orquestrar e essencial.</p></div><div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Cross-file consistency; import graphs; batch edits.</p></div></div></div></div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" aria-expanded="false" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span><div><span class="font-medium">Rollback strategies</span><span class="text-neutral-500 text-sm ml-2">- Desfazer com seguranca</span></div></button><div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9"><div><span class="text-blue-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Como desfazer o trabalho do loop quando algo deu errado: git, worktrees, stash.</p></div><div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">A seguranca de poder reverter e o que permite arriscar mais no loop.</p></div><div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">git reset; worktree discard; incremental commits.</p></div></div></div></div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" aria-expanded="false" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span><div><span class="font-medium">Case studies reais</span><span class="text-neutral-500 text-sm ml-2">- Exemplos vivos</span></div></button><div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9"><div><span class="text-blue-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Exemplos reais de pipelines plan+loop em projetos de producao.</p></div><div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Ver casos concretos solidifica o entendimento do fluxo.</p></div><div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Real-world patterns; lessons learned; metrics.</p></div></div></div></div>
+      </div>
+      <div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+        <a href="modulo-2-5.html" class="px-4 py-2 text-sm bg-blue-600 hover:bg-blue-500 text-white rounded-lg transition-colors">Ver Completo</a>
+      </div>
+    </div>
+
+    <div id="modulo-2-6" data-inema-module="2-6" data-inema-track="2" class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
+      <div class="p-6 border-b border-dark-600">
+        <div class="flex items-center justify-between mb-2"><span class="text-blue-400 font-bold">2.6</span><span class="text-xs text-neutral-500">~35 min</span></div>
+        <h3 class="text-2xl font-bold mb-2">Agentic Coding — O Novo Normal</h3>
+        <p class="text-neutral-400 text-sm">A filosofia por tras de tudo: delegacao, confianca e o mindset shift para produtividade 10x.</p>
+      </div>
+      <div class="divide-y divide-dark-600">
+        <div class="topic-item"><button onclick="toggleTopic(this)" aria-expanded="false" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span><div><span class="font-medium">Filosofia agentic</span><span class="text-neutral-500 text-sm ml-2">- A nova era</span></div></button><div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9"><div><span class="text-blue-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">A mudanca de paradigma: de assistente que responde pra agente que age.</p></div><div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Entender a filosofia e o que permite usar os modos com fluencia.</p></div><div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Agentic vs assistive; autonomy spectrum; intent-driven.</p></div></div></div></div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" aria-expanded="false" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span><div><span class="font-medium">Delegacao eficaz</span><span class="text-neutral-500 text-sm ml-2">- Dar autonomia certa</span></div></button><div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9"><div><span class="text-blue-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Como delegar tarefas ao agente sem microgerenciar nem abandonar.</p></div><div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Delegacao e a skill humana que mais escala com IA agentica.</p></div><div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Clear intent; success criteria; scope boundaries.</p></div></div></div></div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" aria-expanded="false" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span><div><span class="font-medium">Revisao vs micro-management</span><span class="text-neutral-500 text-sm ml-2">- Equilibrio</span></div></button><div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9"><div><span class="text-blue-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">A diferenca entre revisar o resultado e controlar cada passo.</p></div><div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Micro-management mata a produtividade; revisao garante qualidade.</p></div><div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Output review; trust but verify; spot checks.</p></div></div></div></div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" aria-expanded="false" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span><div><span class="font-medium">Trust calibration</span><span class="text-neutral-500 text-sm ml-2">- Calibrar confianca</span></div></button><div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9"><div><span class="text-blue-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Como ajustar o nivel de confianca no agente conforme experiencia acumula.</p></div><div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Confianca demais = bugs; confianca de menos = lentidao.</p></div><div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Progressive trust; track record; domain-specific confidence.</p></div></div></div></div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" aria-expanded="false" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span><div><span class="font-medium">Velocity metrics</span><span class="text-neutral-500 text-sm ml-2">- Medir produtividade</span></div></button><div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9"><div><span class="text-blue-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Como medir se voce esta de fato mais produtivo com agentic coding.</p></div><div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Sem metricas, voce nao sabe se esta evoluindo ou so gastando tokens.</p></div><div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Tasks/day; time-to-merge; rework rate; cost per task.</p></div></div></div></div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" aria-expanded="false" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-blue-500/20 text-blue-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span><div><span class="font-medium">O mindset shift</span><span class="text-neutral-500 text-sm ml-2">- Mudar a cabeca</span></div></button><div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9"><div><span class="text-blue-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">A transicao mental de "eu codifico" para "eu dirijo e reviso".</p></div><div><span class="text-blue-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">O maior bloqueio nao e tecnico, e mental. Quem muda o mindset dispara.</p></div><div><span class="text-blue-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Director mindset; let go of typing; focus on outcomes.</p></div></div></div></div>
+      </div>
+      <div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+        <a href="modulo-2-6.html" class="px-4 py-2 text-sm bg-blue-600 hover:bg-blue-500 text-white rounded-lg transition-colors">Ver Completo</a>
+      </div>
+    </div>
+
+  </main>
+
+  <footer class="border-t border-dark-600 py-8 mt-16"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm"><p>Claude Code — Transicao para o Claude Code · <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300">INEMA.CLUB</a></p></div></footer>
+
+  <script>
+    function toggleTopic(button){ const ti=button.closest('.topic-item'); if(!ti)return; const e=ti.querySelector('.topic-explanation'); if(e){e.classList.toggle('active'); button.setAttribute('aria-expanded', e.classList.contains('active'));} }
+    (function(){ const tt=document.getElementById('theme-toggle'),di=document.getElementById('theme-toggle-dark-icon'),li=document.getElementById('theme-toggle-light-icon'),h=document.documentElement; function s(){ if(h.classList.contains('dark')){li.classList.remove('hidden');di.classList.add('hidden');}else{di.classList.remove('hidden');li.classList.add('hidden');} } s(); tt&&tt.addEventListener('click',function(){h.classList.toggle('dark');var d=h.classList.contains('dark');h.style.colorScheme=d?'dark':'light';try{var p=JSON.parse(localStorage.getItem('inema.prefs')||'{}');p.theme=d?'inema-dark':'claro';localStorage.setItem('inema.prefs',JSON.stringify(p));localStorage.setItem('theme',d?'dark':'light');}catch(e){}s();}); })();
+  </script>
+  <script src="../../assets/learn.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      if (window.INEMA && typeof INEMA.init === 'function') INEMA.init();
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="inema-course" content="claude-code">
+  <title>Trilha 4 · Subagentes e Git | Claude Code</title>
+  <script>
+  (function () {
+    try {
+      var html = document.documentElement;
+      var DEF = { theme: 'inema-dark', font: 'inter', fontScale: 100, lineWidth: 68, leading: 1.7, accent: 'amber' };
+      function clone(o){var r={};for(var x in o)r[x]=o[x];return r;}
+      var p = clone(DEF);
+      try {
+        var raw = localStorage.getItem('inema.prefs');
+        if (raw) { var parsed = JSON.parse(raw); if (parsed && typeof parsed==='object'){ for (var k in DEF) if (parsed[k]!=null) p[k]=parsed[k]; } }
+        else { var legacy = localStorage.getItem('theme'); if (legacy==='light') p.theme='claro'; else if (legacy==='dark') p.theme='inema-dark'; }
+      } catch (e) { p = clone(DEF); }
+      var THEMES = { 'inema-dark':{dark:true,attr:null,cs:'dark'},'claro':{dark:false,attr:null,cs:'light'},'sepia':{dark:false,attr:'sepia',cs:'light'},'foco':{dark:null,attr:'foco',cs:null},'contraste':{dark:true,attr:'contraste',cs:'dark'} };
+      var t = THEMES[p.theme] || THEMES['inema-dark'];
+      if (t.dark===true) html.classList.add('dark'); else if (t.dark===false) html.classList.remove('dark');
+      if (t.attr) html.setAttribute('data-theme', t.attr); else html.removeAttribute('data-theme');
+      html.style.colorScheme = (t.cs ? t.cs : (html.classList.contains('dark')?'dark':'light'));
+      html.setAttribute('data-font', p.font||'inter'); html.setAttribute('data-accent', p.accent||'amber');
+      var s = html.style, scale=(+p.fontScale||100);
+      s.setProperty('--inema-font-scale',(scale/100).toString()); s.setProperty('font-size',scale+'%');
+      s.setProperty('--measure',(+p.lineWidth||68)+'ch'); s.setProperty('--lh-body',(+p.leading||1.7).toString());
+    } catch (err) { try { document.documentElement.classList.add('dark'); document.documentElement.style.colorScheme='dark'; } catch(e){} }
+  })();
+  </script>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = { darkMode: 'class', theme: { extend: { colors: { primary: '#FACC15', dark: { 900: '#111827', 800: '#1f2937', 700: '#374151', 600: '#4b5563' } } } } }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/learn.css">
+  <script type="application/json" data-inema-manifest>
+{"course":"claude-code","tracks":[{"n":"1","title":"CLI e Configuracao","modules":[{"id":"1-1","title":"Instalacao e Primeiro Comando","topics":6,"href":"curso/trilha1/modulo-1-1.html"},{"id":"1-2","title":"Navegando o CLI como um Pro","topics":6,"href":"curso/trilha1/modulo-1-2.html"},{"id":"1-3","title":"CLAUDE.md — O Cerebro do Projeto","topics":6,"href":"curso/trilha1/modulo-1-3.html"},{"id":"1-4","title":"Configuracao Avancada","topics":6,"href":"curso/trilha1/modulo-1-4.html"},{"id":"1-5","title":"Memory e Contexto Persistente","topics":6,"href":"curso/trilha1/modulo-1-5.html"},{"id":"1-6","title":"Seu Workflow Pessoal","topics":6,"href":"curso/trilha1/modulo-1-6.html"}]},{"n":"2","title":"Plan e Loop Modes","modules":[{"id":"2-1","title":"Plan Mode — Pense Antes de Codar","topics":6,"href":"curso/trilha2/modulo-2-1.html"},{"id":"2-2","title":"Planos que Funcionam","topics":6,"href":"curso/trilha2/modulo-2-2.html"},{"id":"2-3","title":"Loop Mode — Automacao Iterativa","topics":6,"href":"curso/trilha2/modulo-2-3.html"},{"id":"2-4","title":"Patterns de Loop na Pratica","topics":6,"href":"curso/trilha2/modulo-2-4.html"},{"id":"2-5","title":"Combinando Plan + Loop","topics":6,"href":"curso/trilha2/modulo-2-5.html"},{"id":"2-6","title":"Agentic Coding — O Novo Normal","topics":6,"href":"curso/trilha2/modulo-2-6.html"}]},{"n":"3","title":"MCP Servers","modules":[{"id":"3-1","title":"O que sao MCP Servers","topics":6,"href":"curso/trilha3/modulo-3-1.html"},{"id":"3-2","title":"Seus Primeiros MCPs","topics":6,"href":"curso/trilha3/modulo-3-2.html"},{"id":"3-3","title":"MCPs de Produtividade","topics":6,"href":"curso/trilha3/modulo-3-3.html"},{"id":"3-4","title":"MCPs de Database e APIs","topics":6,"href":"curso/trilha3/modulo-3-4.html"},{"id":"3-5","title":"Criando seu Proprio MCP Server","topics":6,"href":"curso/trilha3/modulo-3-5.html"},{"id":"3-6","title":"Ecossistema e Marketplace","topics":6,"href":"curso/trilha3/modulo-3-6.html"}]},{"n":"4","title":"Subagentes e Git","modules":[{"id":"4-1","title":"Subagentes — Conceitos","topics":6,"href":"curso/trilha4/modulo-4-1.html"},{"id":"4-2","title":"Paralelismo Real","topics":6,"href":"curso/trilha4/modulo-4-2.html"},{"id":"4-3","title":"Patterns de Multi-Agent","topics":6,"href":"curso/trilha4/modulo-4-3.html"},{"id":"4-4","title":"Git com IA — Versionamento","topics":6,"href":"curso/trilha4/modulo-4-4.html"},{"id":"4-5","title":"Pull Requests e Code Review","topics":6,"href":"curso/trilha4/modulo-4-5.html"},{"id":"4-6","title":"CI/CD e GitHub Actions","topics":6,"href":"curso/trilha4/modulo-4-6.html"}]},{"n":"5","title":"Python e Ship","modules":[{"id":"5-1","title":"Python + Claude Code","topics":6,"href":"curso/trilha5/modulo-5-1.html"},{"id":"5-2","title":"Automacao de Scripts","topics":6,"href":"curso/trilha5/modulo-5-2.html"},{"id":"5-3","title":"FastAPI e Web Services","topics":6,"href":"curso/trilha5/modulo-5-3.html"},{"id":"5-4","title":"Testing Automatizado","topics":6,"href":"curso/trilha5/modulo-5-4.html"},{"id":"5-5","title":"Deploy e Infraestrutura","topics":6,"href":"curso/trilha5/modulo-5-5.html"},{"id":"5-6","title":"Ship Your Product","topics":6,"href":"curso/trilha5/modulo-5-6.html"}]}]}
+</script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .dark body { background-color: #111827; }
+    .topic-explanation { display: none; }
+    .topic-explanation.active { display: block; }
+    [id^="topico-"], [id^="modulo-"] { scroll-margin-top: 5rem; }
+
+    html:not(.dark) body { background-color: #f8fafc; }
+    html:not(.dark) .bg-dark-900 { background-color: #ffffff; }
+    html:not(.dark) .bg-dark-800 { background-color: #f9fafb; }
+    html:not(.dark) .bg-dark-700 { background-color: #f3f4f6; }
+    html:not(.dark) .bg-dark-600 { background-color: #e5e7eb; }
+    html:not(.dark) .text-neutral-100 { color: #111827; }
+    html:not(.dark) .text-neutral-300 { color: #4b5563; }
+    html:not(.dark) .text-neutral-400 { color: #6b7280; }
+    html:not(.dark) .text-neutral-500 { color: #9ca3af; }
+    html:not(.dark) .border-dark-600 { border-color: #d1d5db; }
+    html:not(.dark) .border-dark-700 { border-color: #e5e7eb; }
+    html:not(.dark) .text-amber-400 { color: #92400e; }
+    html:not(.dark) .bg-amber-500\/20 { background-color: rgba(146,64,14,0.12); }
+    html:not(.dark) .bg-amber-500\/10 { background-color: rgba(146,64,14,0.08); }
+    html:not(.dark) .bg-amber-900\/20 { background-color: rgba(146,64,14,0.08); }
+    html:not(.dark) .border-amber-500\/30 { border-color: rgba(146,64,14,0.25); }
+    html:not(.dark) .hover\:bg-amber-500\/30:hover { background-color: rgba(146,64,14,0.18); }
+    html:not(.dark) .hover\:text-amber-400:hover { color: #92400e; }
+    html:not(.dark) .group:hover .group-hover\:text-amber-400 { color: #92400e; }
+    html:not(.dark) [class*="bg-gradient-to"] { background-image: none !important; }
+    html:not(.dark) .text-primary { color: #a16207; }
+    html:not(.dark) .bg-primary\/10 { background-color: rgba(161,98,7,0.08); }
+    html:not(.dark) .border-primary\/30 { border-color: rgba(161,98,7,0.25); }
+    html:not(.dark) .text-sky-400 { color: #0369a1; }
+    html:not(.dark) .text-yellow-400 { color: #a16207; }
+    html:not(.dark) .hover\:text-sky-300:hover { color: #0284c7; }
+    html:not(.dark) .text-red-400 { color: #b91c1c; }
+    html:not(.dark) .bg-red-900\/20 { background-color: rgba(185,28,28,0.07); }
+    html:not(.dark) .border-red-500\/30 { border-color: rgba(185,28,28,0.25); }
+    html:not(.dark) .text-blue-400 { color: #2563eb; }
+    html:not(.dark) .bg-blue-900\/20 { background-color: rgba(37,99,235,0.08); }
+    html:not(.dark) .border-blue-500\/30 { border-color: rgba(37,99,235,0.25); }
+    html:not(.dark) .bg-dark-900\/95 { background-color: rgba(255,255,255,0.95); }
+
+    .dark .border-dark-600 { border-color: #374151; }
+    .dark .divide-dark-600 > :not([hidden]) ~ :not([hidden]) { border-color: #374151; }
+    html:not(.dark) svg[role="img"] { filter: saturate(0.82) brightness(0.96); }
+
+    @keyframes wf-pulse { 0%,100% { opacity:.55 } 50% { opacity:1 } }
+    @media (prefers-reduced-motion: no-preference) {
+      .wf-a { animation: wf-pulse 2.6s ease-in-out infinite; }
+      .wf-a:nth-child(2){animation-delay:.25s} .wf-a:nth-child(3){animation-delay:.5s}
+      .wf-a:nth-child(4){animation-delay:.75s} .wf-a:nth-child(5){animation-delay:1s}
+    }
+  </style>
+</head>
+<body class="bg-dark-900 text-neutral-100 min-h-screen">
+  <a href="#conteudo" class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:top-2 focus:left-2 focus:px-4 focus:py-2 focus:bg-dark-800 focus:text-amber-400 focus:rounded-lg">Pular para o conteudo</a>
+  <nav class="sticky top-0 z-50 bg-dark-900/95 backdrop-blur-sm border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between items-center h-14">
+        <div class="flex items-center space-x-4">
+          <a href="../../index.html" class="flex items-center space-x-2 text-yellow-400 hover:text-yellow-300"><span class="text-2xl">🤖</span><span class="font-bold text-lg hidden sm:inline">CLAUDE CODE</span></a>
+          <span class="text-neutral-600">|</span>
+          <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300 text-sm font-medium">INEMA.CLUB</a>
+        </div>
+        <div class="flex items-center space-x-1 sm:space-x-2">
+          <a href="../trilha1/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-emerald-400 hover:bg-emerald-500/10 transition-colors"><span class="sm:hidden">T1</span><span class="hidden sm:inline">CLI</span></a>
+          <a href="../trilha2/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-blue-400 hover:bg-blue-500/10 transition-colors"><span class="sm:hidden">T2</span><span class="hidden sm:inline">Modos</span></a>
+          <a href="../trilha3/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-purple-400 hover:bg-purple-500/10 transition-colors"><span class="sm:hidden">T3</span><span class="hidden sm:inline">MCP</span></a>
+          <a href="index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-amber-400 bg-amber-500/10"><span class="sm:hidden">T4</span><span class="hidden sm:inline">Agentes</span></a>
+          <a href="../trilha5/index.html" class="px-3 py-1.5 rounded-lg text-sm font-semibold text-neutral-400 hover:text-teal-400 hover:bg-teal-500/10 transition-colors"><span class="sm:hidden">T5</span><span class="hidden sm:inline">Python</span></a>
+          <button type="button" data-inema-journey-open class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-sm text-neutral-300 hover:text-neutral-100 hover:bg-dark-700 transition-colors ml-1"><span aria-hidden="true">◷</span><span>Minha jornada</span><span class="inema-journey-badge hidden" aria-hidden="true"></span></button>
+          <button id="theme-toggle" class="p-2 rounded-lg bg-dark-700 hover:bg-dark-600 transition-colors ml-1" aria-label="Alternar tema">
+            <svg id="theme-toggle-dark-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path></svg>
+            <svg id="theme-toggle-light-icon" class="hidden w-5 h-5 text-neutral-300" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </nav>
+  <header class="bg-gradient-to-br from-amber-900/30 via-dark-800 to-dark-800 py-12 border-b border-dark-600">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <span class="inline-block px-3 py-1 bg-amber-500/20 text-amber-400 text-xs font-semibold rounded-full mb-4">TRILHA 4</span>
+      <h1 class="text-3xl sm:text-4xl font-bold mb-4">🤖 Subagentes e Git</h1>
+      <p class="text-lg text-neutral-400 max-w-3xl mb-6">Escale o Claude Code com subagentes paralelos e domine o workflow Git com IA. Aqui voce aprende a orquestrar multiplos agentes, usar worktrees para isolamento, e integrar tudo num pipeline profissional de versionamento e CI/CD.</p>
+      <div class="rounded-2xl border border-amber-500/30 bg-dark-900/40 p-3 sm:p-4 mb-6 overflow-hidden">
+    <svg viewBox="0 0 1000 240" class="w-full h-auto" role="img" aria-label="Um orquestrador dispara varios agentes em paralelo que convergem num unico resultado via Git">
+      <defs>
+        <linearGradient id="t4h-grad" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fbbf24"/><stop offset="1" stop-color="#f59e0b"/></linearGradient>
+        <filter id="t4h-glow" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="1.8" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+        <pattern id="t4h-grid" width="32" height="32" patternUnits="userSpaceOnUse"><circle cx="1.3" cy="1.3" r="1.3" fill="#f59e0b" opacity="0.12"/></pattern>
+        <marker id="t4h-ah" markerWidth="9" markerHeight="9" refX="6.5" refY="4.5" orient="auto"><path d="M0,0 L8,4.5 L0,9 L2.4,4.5 Z" fill="#fbbf24"/></marker>
+        <marker id="t4h-ahc" markerWidth="9" markerHeight="9" refX="6.5" refY="4.5" orient="auto"><path d="M0,0 L8,4.5 L0,9 L2.4,4.5 Z" fill="#38bdf8"/></marker>
+      </defs>
+      <rect x="0" y="0" width="1000" height="240" fill="url(#t4h-grid)"/>
+      <g fill="none" stroke="#fbbf24" stroke-width="1.8" opacity="0.5">
+        <path d="M196,120 C300,120 320,38 452,38" marker-end="url(#t4h-ah)"/>
+        <path d="M196,120 C300,120 320,79 452,79" marker-end="url(#t4h-ah)"/>
+        <path d="M196,120 L452,120" marker-end="url(#t4h-ah)"/>
+        <path d="M196,120 C300,120 320,161 452,161" marker-end="url(#t4h-ah)"/>
+        <path d="M196,120 C300,120 320,202 452,202" marker-end="url(#t4h-ah)"/>
+      </g>
+      <g filter="url(#t4h-glow)"><rect x="60" y="88" width="136" height="64" rx="14" fill="#1f1604" stroke="url(#t4h-grad)" stroke-width="2.5"/></g>
+      <text x="128" y="116" text-anchor="middle" fill="#fbbf24" font-family="Inter,sans-serif" font-weight="600" font-size="15">Orquestrador</text>
+      <text x="128" y="137" text-anchor="middle" fill="#fde68a" font-family="Inter,sans-serif" font-size="11">Task tool</text>
+      <g font-family="Inter,sans-serif" font-size="12" font-weight="600">
+        <g class="wf-a"><rect x="452" y="18" width="140" height="38" rx="8" fill="#0e1b26" stroke="#38bdf8" stroke-width="2"/><text x="522" y="42" text-anchor="middle" fill="#bfe6ff">Agent: testes</text></g>
+        <g class="wf-a"><rect x="452" y="60" width="140" height="38" rx="8" fill="#0e1b26" stroke="#38bdf8" stroke-width="2"/><text x="522" y="84" text-anchor="middle" fill="#bfe6ff">Agent: refactor</text></g>
+        <g class="wf-a"><rect x="452" y="102" width="140" height="38" rx="8" fill="#0e1b26" stroke="#38bdf8" stroke-width="2"/><text x="522" y="126" text-anchor="middle" fill="#bfe6ff">Agent: docs</text></g>
+        <g class="wf-a"><rect x="452" y="143" width="140" height="38" rx="8" fill="#0e1b26" stroke="#38bdf8" stroke-width="2"/><text x="522" y="167" text-anchor="middle" fill="#bfe6ff">Agent: lint</text></g>
+        <g class="wf-a"><rect x="452" y="184" width="140" height="38" rx="8" fill="#0e1b26" stroke="#38bdf8" stroke-width="2"/><text x="522" y="208" text-anchor="middle" fill="#bfe6ff">Agent: feature</text></g>
+      </g>
+      <g fill="none" stroke="#38bdf8" stroke-width="1.8" opacity="0.5">
+        <path d="M592,37 C700,37 720,120 800,120" marker-end="url(#t4h-ahc)"/>
+        <path d="M592,79 C700,79 720,120 800,120" marker-end="url(#t4h-ahc)"/>
+        <path d="M592,121 L800,120" marker-end="url(#t4h-ahc)"/>
+        <path d="M592,162 C700,162 720,120 800,120" marker-end="url(#t4h-ahc)"/>
+        <path d="M592,203 C700,203 720,120 800,120" marker-end="url(#t4h-ahc)"/>
+      </g>
+      <rect x="800" y="90" width="160" height="60" rx="14" fill="#1f2937" stroke="#9ca3af" stroke-width="2"/>
+      <text x="880" y="116" text-anchor="middle" fill="#e5e7eb" font-family="Inter,sans-serif" font-weight="600" font-size="14">Git merge</text>
+      <text x="880" y="136" text-anchor="middle" fill="#9ca3af" font-family="Inter,sans-serif" font-size="11">PR + CI/CD</text>
+    </svg>
+      </div>
+      <div class="grid grid-cols-4 gap-4 mt-2 max-w-2xl">
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-amber-400">6</div><div class="text-xs text-neutral-400">Modulos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-amber-400">36</div><div class="text-xs text-neutral-400">Topicos</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-amber-400">~4.5h</div><div class="text-xs text-neutral-400">Duracao</div></div>
+        <div class="bg-dark-800/50 rounded-lg p-3 border border-dark-600"><div class="text-xl font-bold text-amber-400">Inter.</div><div class="text-xs text-neutral-400">Nivel</div></div>
+      </div>
+      <div class="mt-6 max-w-2xl">
+        <div data-inema-meter="trilha:4" class="inema-meter flex items-center gap-3" role="progressbar" aria-valuemin="0" aria-valuemax="100" aria-label="Progresso da trilha 4">
+          <span class="text-sm text-neutral-400">Progresso da trilha:</span>
+          <span class="inema-meter-pct text-amber-400 font-bold text-sm">0%</span>
+          <span class="inema-meter-count text-xs text-neutral-500">0 de 36</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main id="conteudo" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <section class="mb-12">
+      <h2 class="text-2xl font-bold mb-6">Mapa da trilha</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <a href="#modulo-4-1" class="group bg-dark-800 rounded-xl border border-dark-600 hover:border-amber-500/30 p-5 transition-all">
+          <div class="flex items-center justify-between mb-2"><span class="text-amber-400 font-bold text-sm">4.1</span><span class="text-xs text-neutral-500">~40 min</span></div>
+          <h3 class="font-semibold mb-1 group-hover:text-amber-400 transition-colors">Subagentes — Conceitos</h3>
+          <p class="text-xs text-neutral-400">A Task tool e isolamento</p>
+        </a>
+        <a href="#modulo-4-2" class="group bg-dark-800 rounded-xl border border-dark-600 hover:border-amber-500/30 p-5 transition-all">
+          <div class="flex items-center justify-between mb-2"><span class="text-amber-400 font-bold text-sm">4.2</span><span class="text-xs text-neutral-500">~45 min</span></div>
+          <h3 class="font-semibold mb-1 group-hover:text-amber-400 transition-colors">Paralelismo Real</h3>
+          <p class="text-xs text-neutral-400">Multiplos agents em acao</p>
+        </a>
+        <a href="#modulo-4-3" class="group bg-dark-800 rounded-xl border border-dark-600 hover:border-amber-500/30 p-5 transition-all">
+          <div class="flex items-center justify-between mb-2"><span class="text-amber-400 font-bold text-sm">4.3</span><span class="text-xs text-neutral-500">~50 min</span></div>
+          <h3 class="font-semibold mb-1 group-hover:text-amber-400 transition-colors">Patterns de Multi-Agent</h3>
+          <p class="text-xs text-neutral-400">Fan-out, pipelines, specialists</p>
+        </a>
+        <a href="#modulo-4-4" class="group bg-dark-800 rounded-xl border border-dark-600 hover:border-amber-500/30 p-5 transition-all">
+          <div class="flex items-center justify-between mb-2"><span class="text-amber-400 font-bold text-sm">4.4</span><span class="text-xs text-neutral-500">~40 min</span></div>
+          <h3 class="font-semibold mb-1 group-hover:text-amber-400 transition-colors">Git com IA — Versionamento</h3>
+          <p class="text-xs text-neutral-400">Commits semanticos e staging</p>
+        </a>
+        <a href="#modulo-4-5" class="group bg-dark-800 rounded-xl border border-dark-600 hover:border-amber-500/30 p-5 transition-all">
+          <div class="flex items-center justify-between mb-2"><span class="text-amber-400 font-bold text-sm">4.5</span><span class="text-xs text-neutral-500">~45 min</span></div>
+          <h3 class="font-semibold mb-1 group-hover:text-amber-400 transition-colors">Pull Requests e Code Review</h3>
+          <p class="text-xs text-neutral-400">PRs automatizados com gh CLI</p>
+        </a>
+        <a href="#modulo-4-6" class="group bg-dark-800 rounded-xl border border-dark-600 hover:border-amber-500/30 p-5 transition-all">
+          <div class="flex items-center justify-between mb-2"><span class="text-amber-400 font-bold text-sm">4.6</span><span class="text-xs text-neutral-500">~50 min</span></div>
+          <h3 class="font-semibold mb-1 group-hover:text-amber-400 transition-colors">CI/CD e GitHub Actions</h3>
+          <p class="text-xs text-neutral-400">Deploy continuo com Claude</p>
+        </a>
+      </div>
+    </section>
+
+    <h2 class="text-2xl font-bold mb-6">Conteudo detalhado</h2>
+
+    <div id="modulo-4-1" data-inema-module="4-1" data-inema-track="4" class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
+      <div class="p-6 border-b border-dark-600">
+        <div class="flex items-center justify-between mb-2"><span class="text-amber-400 font-bold">4.1</span><span class="text-xs text-neutral-500">~40 min</span></div>
+        <h3 class="text-2xl font-bold mb-2">Subagentes — Conceitos</h3>
+        <p class="text-neutral-400 text-sm">O que sao subagentes, a Task tool e quando usar paralelismo.</p>
+      </div>
+      <div class="divide-y divide-dark-600">
+        <div class="topic-item"><button onclick="toggleTopic(this)" aria-expanded="false" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span><div><span class="font-medium">O que sao subagentes</span><span class="text-neutral-500 text-sm ml-2">- Agentes dentro de agentes</span></div></button><div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9"><div><span class="text-amber-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Subagentes sao instancias do Claude Code lancadas pelo agente principal para executar tarefas isoladas.</p></div><div><span class="text-amber-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Permite escalar trabalho sem poluir o contexto do agente principal.</p></div><div><span class="text-amber-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Pai-filho; isolamento de contexto; delegacao.</p></div></div></div></div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" aria-expanded="false" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span><div><span class="font-medium">A Task tool</span><span class="text-neutral-500 text-sm ml-2">- O mecanismo de lancamento</span></div></button><div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9"><div><span class="text-amber-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">A ferramenta interna do Claude Code que cria subagentes com prompt e contexto proprio.</p></div><div><span class="text-amber-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">E a interface primaria para orquestrar trabalho paralelo.</p></div><div><span class="text-amber-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Task(prompt); retorno de resultado; escopo limitado.</p></div></div></div></div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" aria-expanded="false" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span><div><span class="font-medium">Tipos de agente disponiveis</span><span class="text-neutral-500 text-sm ml-2">- Read-only, full, background</span></div></button><div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9"><div><span class="text-amber-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Subagentes podem ter niveis diferentes de permissao: leitura, escrita ou background.</p></div><div><span class="text-amber-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Escolher o tipo certo evita conflitos e reduz risco.</p></div><div><span class="text-amber-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Principio do menor privilegio; agentes especializados.</p></div></div></div></div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" aria-expanded="false" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span><div><span class="font-medium">Comunicacao pai-filho</span><span class="text-neutral-500 text-sm ml-2">- Como dados fluem</span></div></button><div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9"><div><span class="text-amber-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">O pai envia instrucao e contexto; o filho retorna resultado textual ao terminar.</p></div><div><span class="text-amber-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Entender o fluxo evita perda de informacao entre agentes.</p></div><div><span class="text-amber-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Prompt de entrada; retorno estruturado; sem estado compartilhado.</p></div></div></div></div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" aria-expanded="false" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span><div><span class="font-medium">Isolamento e worktrees</span><span class="text-neutral-500 text-sm ml-2">- Cada agente no seu espaco</span></div></button><div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9"><div><span class="text-amber-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Worktrees do git permitem que cada subagente trabalhe em arquivos sem conflitar com outros.</p></div><div><span class="text-amber-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Sem isolamento, agentes paralelos pisam uns nos outros.</p></div><div><span class="text-amber-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">git worktree; branch temporaria; merge posterior.</p></div></div></div></div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" aria-expanded="false" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span><div><span class="font-medium">Quando usar vs nao usar</span><span class="text-neutral-500 text-sm ml-2">- Custo-beneficio</span></div></button><div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9"><div><span class="text-amber-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Subagentes tem overhead de contexto e custo. Nem toda tarefa justifica paralelismo.</p></div><div><span class="text-amber-400 font-semibold">Por que aprender:</span><p class="text-neutral-300 text-sm">Evita gastar tokens desnecessariamente em tarefas simples.</p></div><div><span class="text-amber-400 font-semibold">Conceitos-chave:</span><p class="text-neutral-300 text-sm">Overhead vs ganho; tarefas independentes; complexidade minima.</p></div></div></div></div>
+      </div>
+      <div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+        <a href="modulo-4-1.html" class="px-4 py-2 text-sm bg-amber-600 hover:bg-amber-500 text-white rounded-lg transition-colors">Ver Completo</a>
+      </div>
+    </div>
+
+    <div id="modulo-4-2" data-inema-module="4-2" data-inema-track="4" class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
+      <div class="p-6 border-b border-dark-600">
+        <div class="flex items-center justify-between mb-2"><span class="text-amber-400 font-bold">4.2</span><span class="text-xs text-neutral-500">~45 min</span></div>
+        <h3 class="text-2xl font-bold mb-2">Paralelismo Real</h3>
+        <p class="text-neutral-400 text-sm">Lance multiplos agents, colete resultados e lide com erros em paralelo.</p>
+      </div>
+      <div class="divide-y divide-dark-600">
+        <div class="topic-item"><button onclick="toggleTopic(this)" aria-expanded="false" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span><div><span class="font-medium">Lancando multiplos agents</span><span class="text-neutral-500 text-sm ml-2">- Fan-out na pratica</span></div></button><div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9"><div><span class="text-amber-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Disparar varias Task tools simultaneamente para tarefas independentes.</p></div></div></div></div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" aria-expanded="false" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span><div><span class="font-medium">Independencia vs dependencia</span><span class="text-neutral-500 text-sm ml-2">- Quando paralelizar</span></div></button><div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9"><div><span class="text-amber-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Identificar tarefas que nao dependem umas das outras para execucao simultanea.</p></div></div></div></div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" aria-expanded="false" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span><div><span class="font-medium">Worktrees na pratica</span><span class="text-neutral-500 text-sm ml-2">- Comando e workflow</span></div></button><div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9"><div><span class="text-amber-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Usar git worktree add para criar espacos de trabalho isolados por agente.</p></div></div></div></div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" aria-expanded="false" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span><div><span class="font-medium">Background tasks</span><span class="text-neutral-500 text-sm ml-2">- Agents em segundo plano</span></div></button><div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9"><div><span class="text-amber-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Executar tarefas longas em background enquanto o agente principal continua.</p></div></div></div></div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" aria-expanded="false" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span><div><span class="font-medium">Coletando resultados</span><span class="text-neutral-500 text-sm ml-2">- Fan-in e sintese</span></div></button><div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9"><div><span class="text-amber-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Reunir os outputs de todos os subagentes e consolidar num resultado final.</p></div></div></div></div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" aria-expanded="false" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span><div><span class="font-medium">Error handling paralelo</span><span class="text-neutral-500 text-sm ml-2">- Quando um agent falha</span></div></button><div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9"><div><span class="text-amber-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Estrategias para lidar com falha parcial: retry, skip ou abort.</p></div></div></div></div>
+      </div>
+      <div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+        <a href="modulo-4-2.html" class="px-4 py-2 text-sm bg-amber-600 hover:bg-amber-500 text-white rounded-lg transition-colors">Ver Completo</a>
+      </div>
+    </div>
+
+    <div id="modulo-4-3" data-inema-module="4-3" data-inema-track="4" class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
+      <div class="p-6 border-b border-dark-600">
+        <div class="flex items-center justify-between mb-2"><span class="text-amber-400 font-bold">4.3</span><span class="text-xs text-neutral-500">~50 min</span></div>
+        <h3 class="text-2xl font-bold mb-2">Patterns de Multi-Agent</h3>
+        <p class="text-neutral-400 text-sm">Padroes arquiteturais: fan-out/in, pipelines, specialists e cost control.</p>
+      </div>
+      <div class="divide-y divide-dark-600">
+        <div class="topic-item"><button onclick="toggleTopic(this)" aria-expanded="false" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span><div><span class="font-medium">Fan-out / fan-in</span><span class="text-neutral-500 text-sm ml-2">- Divergir e convergir</span></div></button><div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9"><div><span class="text-amber-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Distribuir trabalho para N agentes e reunir resultados num unico ponto.</p></div></div></div></div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" aria-expanded="false" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span><div><span class="font-medium">Pipeline sequencial</span><span class="text-neutral-500 text-sm ml-2">- A saida de um e entrada de outro</span></div></button><div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9"><div><span class="text-amber-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Encadear agentes onde o output de um alimenta o proximo.</p></div></div></div></div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" aria-expanded="false" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span><div><span class="font-medium">Explore, Plan, Execute</span><span class="text-neutral-500 text-sm ml-2">- Tres fases</span></div></button><div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9"><div><span class="text-amber-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Um agente explora o codebase, outro planeja, outro executa. Separacao de preocupacoes.</p></div></div></div></div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" aria-expanded="false" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span><div><span class="font-medium">Specialist agents</span><span class="text-neutral-500 text-sm ml-2">- Cada um no que faz melhor</span></div></button><div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9"><div><span class="text-amber-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Agentes com prompts especificos para testes, docs, lint ou seguranca.</p></div></div></div></div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" aria-expanded="false" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span><div><span class="font-medium">Error handling distribuido</span><span class="text-neutral-500 text-sm ml-2">- Resiliencia</span></div></button><div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9"><div><span class="text-amber-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Patterns de retry, fallback e circuit-breaker adaptados para agentes de IA.</p></div></div></div></div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" aria-expanded="false" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span><div><span class="font-medium">Cost control</span><span class="text-neutral-500 text-sm ml-2">- Nao estourar o orcamento</span></div></button><div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9"><div><span class="text-amber-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Limitar tokens por subagente, usar modelos menores para tarefas simples, medir ROI.</p></div></div></div></div>
+      </div>
+      <div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+        <a href="modulo-4-3.html" class="px-4 py-2 text-sm bg-amber-600 hover:bg-amber-500 text-white rounded-lg transition-colors">Ver Completo</a>
+      </div>
+    </div>
+
+    <div id="modulo-4-4" data-inema-module="4-4" data-inema-track="4" class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
+      <div class="p-6 border-b border-dark-600">
+        <div class="flex items-center justify-between mb-2"><span class="text-amber-400 font-bold">4.4</span><span class="text-xs text-neutral-500">~40 min</span></div>
+        <h3 class="text-2xl font-bold mb-2">Git com IA — Versionamento</h3>
+        <p class="text-neutral-400 text-sm">Commits semanticos, staging inteligente e merge conflicts com Claude.</p>
+      </div>
+      <div class="divide-y divide-dark-600">
+        <div class="topic-item"><button onclick="toggleTopic(this)" aria-expanded="false" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span><div><span class="font-medium">Commits semanticos com Claude</span><span class="text-neutral-500 text-sm ml-2">- Mensagens que comunicam</span></div></button><div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9"><div><span class="text-amber-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Claude analisa o diff e gera mensagens de commit no padrao conventional commits.</p></div></div></div></div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" aria-expanded="false" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span><div><span class="font-medium">Staging inteligente</span><span class="text-neutral-500 text-sm ml-2">- O que entra no commit</span></div></button><div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9"><div><span class="text-amber-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Claude seleciona arquivos logicamente relacionados para commits atomicos.</p></div></div></div></div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" aria-expanded="false" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span><div><span class="font-medium">Diff review automatizado</span><span class="text-neutral-500 text-sm ml-2">- Antes de commitar</span></div></button><div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9"><div><span class="text-amber-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Pedir ao Claude para revisar o diff antes de confirmar, pegando bugs e inconsistencias.</p></div></div></div></div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" aria-expanded="false" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span><div><span class="font-medium">Merge conflicts</span><span class="text-neutral-500 text-sm ml-2">- Resolver com IA</span></div></button><div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9"><div><span class="text-amber-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Claude entende o contexto de ambos os lados e resolve conflitos semanticamente.</p></div></div></div></div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" aria-expanded="false" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span><div><span class="font-medium">Branching strategy</span><span class="text-neutral-500 text-sm ml-2">- Feature branches com IA</span></div></button><div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9"><div><span class="text-amber-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Usar branches curtas e focadas que facilitam o trabalho do agente.</p></div></div></div></div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" aria-expanded="false" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span><div><span class="font-medium">.gitignore e seguranca</span><span class="text-neutral-500 text-sm ml-2">- O que nunca commitar</span></div></button><div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9"><div><span class="text-amber-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Proteger segredos (.env, keys) e evitar que o agente commite arquivos sensiveis.</p></div></div></div></div>
+      </div>
+      <div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+        <a href="modulo-4-4.html" class="px-4 py-2 text-sm bg-amber-600 hover:bg-amber-500 text-white rounded-lg transition-colors">Ver Completo</a>
+      </div>
+    </div>
+
+    <div id="modulo-4-5" data-inema-module="4-5" data-inema-track="4" class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
+      <div class="p-6 border-b border-dark-600">
+        <div class="flex items-center justify-between mb-2"><span class="text-amber-400 font-bold">4.5</span><span class="text-xs text-neutral-500">~45 min</span></div>
+        <h3 class="text-2xl font-bold mb-2">Pull Requests e Code Review</h3>
+        <p class="text-neutral-400 text-sm">PRs automatizados com gh CLI, review por IA e best practices.</p>
+      </div>
+      <div class="divide-y divide-dark-600">
+        <div class="topic-item"><button onclick="toggleTopic(this)" aria-expanded="false" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span><div><span class="font-medium">Criar PRs com gh CLI</span><span class="text-neutral-500 text-sm ml-2">- Do terminal ao GitHub</span></div></button><div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9"><div><span class="text-amber-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Claude usa gh pr create para abrir PRs com titulo, descricao e labels automaticos.</p></div></div></div></div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" aria-expanded="false" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span><div><span class="font-medium">Review automatizado</span><span class="text-neutral-500 text-sm ml-2">- IA como reviewer</span></div></button><div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9"><div><span class="text-amber-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Usar Claude para revisar PRs de colegas ou do proprio agente antes do merge.</p></div></div></div></div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" aria-expanded="false" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span><div><span class="font-medium">CI checks integration</span><span class="text-neutral-500 text-sm ml-2">- Testes antes do merge</span></div></button><div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9"><div><span class="text-amber-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Integrar os checks do CI no workflow para que o Claude so faca merge quando verde.</p></div></div></div></div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" aria-expanded="false" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span><div><span class="font-medium">Addressing feedback</span><span class="text-neutral-500 text-sm ml-2">- Iterar sobre comentarios</span></div></button><div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9"><div><span class="text-amber-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Claude le comentarios de review e faz as alteracoes pedidas automaticamente.</p></div></div></div></div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" aria-expanded="false" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span><div><span class="font-medium">Squash e rebase</span><span class="text-neutral-500 text-sm ml-2">- Historico limpo</span></div></button><div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9"><div><span class="text-amber-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Manter um historico linear e legivel com squash merges e rebase interativo.</p></div></div></div></div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" aria-expanded="false" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span><div><span class="font-medium">Best practices</span><span class="text-neutral-500 text-sm ml-2">- PRs que fazem merge rapido</span></div></button><div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9"><div><span class="text-amber-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">PRs pequenos, focados, bem descritos e com testes passando: a receita do merge rapido.</p></div></div></div></div>
+      </div>
+      <div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+        <a href="modulo-4-5.html" class="px-4 py-2 text-sm bg-amber-600 hover:bg-amber-500 text-white rounded-lg transition-colors">Ver Completo</a>
+      </div>
+    </div>
+
+    <div id="modulo-4-6" data-inema-module="4-6" data-inema-track="4" class="bg-dark-800 rounded-xl border border-dark-600 mb-6">
+      <div class="p-6 border-b border-dark-600">
+        <div class="flex items-center justify-between mb-2"><span class="text-amber-400 font-bold">4.6</span><span class="text-xs text-neutral-500">~50 min</span></div>
+        <h3 class="text-2xl font-bold mb-2">CI/CD e GitHub Actions</h3>
+        <p class="text-neutral-400 text-sm">Automatize deploy, testes e seguranca com GitHub Actions e Claude.</p>
+      </div>
+      <div class="divide-y divide-dark-600">
+        <div class="topic-item"><button onclick="toggleTopic(this)" aria-expanded="false" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">1</span><div><span class="font-medium">GitHub Actions basics</span><span class="text-neutral-500 text-sm ml-2">- Workflows YAML</span></div></button><div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9"><div><span class="text-amber-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Automacoes baseadas em eventos do GitHub: push, PR, schedule.</p></div></div></div></div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" aria-expanded="false" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">2</span><div><span class="font-medium">Workflows com Claude</span><span class="text-neutral-500 text-sm ml-2">- IA no CI</span></div></button><div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9"><div><span class="text-amber-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Usar Claude Code dentro de GitHub Actions para review, fix e deploy automatico.</p></div></div></div></div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" aria-expanded="false" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">3</span><div><span class="font-medium">Testes automatizados no CI</span><span class="text-neutral-500 text-sm ml-2">- Qualidade garantida</span></div></button><div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9"><div><span class="text-amber-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Rodar test suites em cada push e bloquear merge se falhar.</p></div></div></div></div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" aria-expanded="false" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">4</span><div><span class="font-medium">Deploy continuo</span><span class="text-neutral-500 text-sm ml-2">- Push to production</span></div></button><div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9"><div><span class="text-amber-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Deploys automaticos apos merge: Vercel, Railway, Docker, etc.</p></div></div></div></div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" aria-expanded="false" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">5</span><div><span class="font-medium">Security scanning</span><span class="text-neutral-500 text-sm ml-2">- Vulnerabilidades no CI</span></div></button><div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9"><div><span class="text-amber-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Dependabot, CodeQL e scans de segredos integrados ao pipeline.</p></div></div></div></div>
+        <div class="topic-item"><button onclick="toggleTopic(this)" aria-expanded="false" class="w-full px-6 py-4 flex items-center space-x-3 hover:bg-dark-700/50 transition-colors text-left"><span class="w-6 h-6 rounded-full bg-amber-500/20 text-amber-400 text-sm font-bold flex items-center justify-center flex-shrink-0">6</span><div><span class="font-medium">Monitoring e alertas</span><span class="text-neutral-500 text-sm ml-2">- Saber quando quebrou</span></div></button><div class="topic-explanation px-6 pb-4"><div class="bg-dark-700/50 rounded-lg p-4 space-y-3 ml-9"><div><span class="text-amber-400 font-semibold">O que e:</span><p class="text-neutral-300 text-sm">Notificacoes de falha, health checks e rollback automatico.</p></div></div></div></div>
+      </div>
+      <div class="p-4 bg-dark-700/30 flex justify-start space-x-3">
+        <a href="modulo-4-6.html" class="px-4 py-2 text-sm bg-amber-600 hover:bg-amber-500 text-white rounded-lg transition-colors">Ver Completo</a>
+      </div>
+    </div>
+  </main>
+
+  <footer class="border-t border-dark-600 py-8 mt-16"><div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-neutral-500 text-sm"><p>Transicao para o Claude Code · <a href="https://inema.club" target="_blank" class="text-sky-400 hover:text-sky-300">INEMA.CLUB</a></p></div></footer>
+
+  <script>
+    function toggleTopic(button){ const ti=button.closest('.topic-item'); if(!ti)return; const e=ti.querySelector('.topic-explanation'); if(e){e.classList.toggle('active'); button.setAttribute('aria-expanded', e.classList.contains('active'));} }
+    (function(){ const tt=document.getElementById('theme-toggle'),di=document.getElementById('theme-toggle-dark-icon'),li=document.getElementById('theme-toggle-light-icon'),h=document.documentElement; function s(){ if(h.classList.contains('dark')){li.classList.remove('hidden');di.classList.add('hidden');}else{di.classList.remove('hidden');li.classList.add('hidden');} } s(); tt&&tt.addEventListener('click',function(){h.classList.toggle('dark');var d=h.classList.contains('dark');h.style.colorScheme=d?'dark':'light';try{var p=JSON.parse(localStorage.getItem('inema.prefs')||'{}');p.theme=d?'inema-dark':'claro';localStorage.setItem('inema.prefs',JSON.stringify(p));localStorage.setItem('theme',d?'dark':'light');}catch(e){}s();}); })();
+  </script>
+  <script src="../../assets/learn.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      if (window.INEMA && typeof INEMA.init === 'function') INEMA.init();
+    });
+  </script>
+</body>
+</html>
